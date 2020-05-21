@@ -42,7 +42,6 @@ class BaseController extends Controller
 		$labels['labels'] = Label::query()->where('num','>',0)->get()->toArray();
 		$assign = array_merge($nav,$data,$top,$labels);
 		
-		debug($assign);
 		$this->assign = $assign;
 	}
 	
