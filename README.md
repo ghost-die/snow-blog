@@ -30,10 +30,10 @@
 git clone git@git.ghost-ai.com:root/note.git
 ```
 
-2. 进入项目目录后，用```compose``` 安装依赖
+2. 进入项目目录后，用```composer```  安装依赖
 
 ```bash
-cd note && compose install
+cd note && composer install
 ```
 
 3. 生成```.env``` 文件
