@@ -1,10 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "ghost/snow-blog",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Listen to the snow pavilion personal blog ",
     "keywords": [
-        "framework",
-        "laravel"
+        "blog",
+        "laravel",
+        "snow"
     ],
     "license": "MIT",
     "require": {
