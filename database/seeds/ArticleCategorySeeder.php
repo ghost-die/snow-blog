@@ -12,7 +12,7 @@ class ArticleCategorySeeder extends Seeder
      */
     public function run()
     {
-	    DB::table('labels')->insert(
+	    DB::table('article_categories')->insert(
 		    [
 			    [
 				    'user_id' => 1,
