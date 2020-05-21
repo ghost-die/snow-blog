@@ -1,0 +1,42 @@
+
+
+
+@import "~prismjs";
+@import "~prismjs/plugins/line-numbers/prism-line-numbers.css";
+@import "~prismjs/plugins/toolbar/prism-toolbar.css";
+@import "~prismjs/plugins/previewers/prism-previewers.css";
+@import "~prismjs/plugins/command-line/prism-command-line.css";
+@import "~prismjs/plugins/treeview/prism-treeview.css";
+
+
+
+
+
+
+#md-content img {
+  max-width: 100%;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+#md-content{
+  color: black;
+}
+#md-content h1,
+#md-content h2,
+#md-content h3,
+#md-content h4,
+#md-content h5,
+#md-content h6{
+  font-weight: 300;
+}
+
+
+#md-content img {
+  cursor: pointer;
+  transition: all 0.9s;
+}
+#md-content img:hover{
+  transform: scale(1.05);
+}
+
+
