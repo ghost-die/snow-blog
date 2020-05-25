@@ -24,7 +24,7 @@
         <div class="card-body">
             <ul class="list-group list-group-flush">
             @foreach($top as $item)
-                <li class="list-group-item"><a class="link-gray-dark" href="{{ route('article.index',['article'=>$item['id']]) }}">{{ $item['title'] }} </a> </li>
+                <li class="list-group-item overflow_hidden" style="text-overflow:ellipsis;white-space: nowrap;"><a class="link-gray-dark" href="{{ route('article.index',['article'=>$item['id']]) }}">{{ $item['title'] }}</a> </li>
             @endforeach
             </ul>
         </div>
