@@ -24,7 +24,9 @@ Route::get('/t',function (\Illuminate\Http\Request $request){
 Route::get('/h',function (\Illuminate\Http\Request $request){
 	return $request->header();
 });
-
+Route::get('/ip',function (\Illuminate\Http\Request $request){
+	return $request;
+});
 
 
 Auth::routes();
