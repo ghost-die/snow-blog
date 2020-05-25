@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/t',function (\Illuminate\Http\Request $request){
-	return $request->server();
+	return $_SERVER;
 });
 
 Auth::routes();
