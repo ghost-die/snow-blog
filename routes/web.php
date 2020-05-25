@@ -21,6 +21,12 @@ Route::get('/t',function (\Illuminate\Http\Request $request){
 	return $_SERVER;
 });
 
+Route::get('/h',function (\Illuminate\Http\Request $request){
+	return $request->header();
+});
+
+
+
 Auth::routes();
 
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function ( Routes $route) {
