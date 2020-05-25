@@ -22,7 +22,14 @@
                             {!! $data->content !!}
                         </div>
                     </div>
+                    <div class="card-footer bg-white text-danger">
+                        本文为{{ config('app.name', 'Laravel') }}原创文章,转载无需和我联系,但请注明来自<a href="{{ config('app.url') }}">{{ config('app.name', 'Laravel') }}</a>
+                    </div>
                 </div>
+
+
+
+
 
                 <div class="card mt-3 mb-3">
                     <div class="card-body pl-5">

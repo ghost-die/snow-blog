@@ -31,15 +31,15 @@
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <nav class="main-header navbar navbar-expand navbar-dark">
+    <nav class="main-header navbar navbar-expand navbar-dark" style="padding-right: 0">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="ri-layout-line"></i></a>
             </li>
         </ul>
 
-        <ul class="nav navbar-nav  ml-auto">
-            <li class="dropdown user user-menu nav-item">
+        <ul class="nav navbar-nav  ml-auto" >
+            <li class="dropdown user user-menu nav-item" style="padding-right: 1rem;">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{ auth()->user()->avatar }}" style="margin-top: 0" class="user-image" alt="User Image">
                     <span class="hidden-xs">{{ auth()->user()->name }}</span>
@@ -53,12 +53,20 @@
                             <small>Member since admin {{ auth()->user()->created_at }}</small>
                         </p>
                     </li>
-                    <li class="user-footer">
-                        <a class="btn btn-default btn-block" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                    <li class="border-top clearfix " style="padding: .5rem 1rem;" >
+
+                        <div class="float-left">
+                            <a href="{{ admin_url('auth/setting') }}" class="btn btn-sm border btn-default btn-flat">编辑</a>
+                        </div>
+                        <div class="float-right">
+
+                            <a class="btn btn-sm btn-default border rounded-0" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                退出
+                            </a>
+                        </div>
+                        
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
