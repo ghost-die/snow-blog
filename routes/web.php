@@ -25,7 +25,7 @@ Route::get('/h',function (\Illuminate\Http\Request $request){
 	return $request->header();
 });
 Route::get('/ip',function (\Illuminate\Http\Request $request){
-	return $request;
+	dd($request);
 });
 
 
