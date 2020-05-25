@@ -18,16 +18,8 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/t',function (\Illuminate\Http\Request $request){
-	return $_SERVER;
+	return $request->server();
 });
-
-Route::get('/h',function (\Illuminate\Http\Request $request){
-	return $request->header();
-});
-Route::get('/ip',function (\Illuminate\Http\Request $request){
-	dd($_SERVER['HTTP_X_FORWARDED_FOR']);
-});
-
 
 Auth::routes();
 
