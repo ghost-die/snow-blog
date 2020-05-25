@@ -127,6 +127,28 @@ class Article extends Model
 		return Carbon::parse($created_at)->diffForHumans();
 	}
 	
+	
+	
+	public function readAdd(string $ip,Article $article,Read $read)
+	{
+		if (! $read->checkout($ip,$article->id))
+		{
+			$data['ip']=$ip;
+			$data['article_id']=$article->id;
+			$read->set($data);
+			
+			$article->reads_num +=1;
+			$article->save();
+			
+			return  true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	
+	
 	public function label()
 	{
 		return $this->belongsToMany(Label::class, 'article_to_label','article_id','label_id');

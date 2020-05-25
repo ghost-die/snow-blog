@@ -8,6 +8,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Lib\Tree;
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\Read;
 use App\Traits\HasResourceActions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -18,7 +19,7 @@ class ArticleController extends BaseController
 	use HasResourceActions ;
 	
 	
-	public function index(Article $article)
+	public function index(Article $article,Request $request,Read $read)
 	{
 		$comments = Tree::instance()->init($article->comment->toArray())->getTreeArray(0);
 		
@@ -33,6 +34,7 @@ class ArticleController extends BaseController
 			'comment_data'=>$comment_data
 		];
 		
+		$article->readAdd($request->getClientIp(),$article,$read);
 		$this->setAssign($assign);
 		$this->setView('article.index');
 		return $this->response();
