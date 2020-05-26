@@ -15,3 +15,5 @@ composer.lock
 package-lock.json
 /.vscode
 note.code-workspace
+/storage/laravels.json
+/storage/laravels.pid
