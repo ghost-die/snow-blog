@@ -1,4 +1,8 @@
 {
   "Logout": "退出登陆",
-  "User": "用户中心"
+  "User": "用户中心",
+  "Sign In": "登陆",
+  "Remember Me": "记住登陆",
+  "Email": "邮箱地址",
+  "Password": "密码"
 }

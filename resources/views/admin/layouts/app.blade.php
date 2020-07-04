@@ -31,7 +31,7 @@
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <nav class="main-header navbar navbar-expand navbar-dark" style="padding-right: 0">
+    <nav class="main-header navbar navbar-expand navbar-light" style="padding-right: 0">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="ri-layout-line"></i></a>
@@ -66,7 +66,7 @@
                                 退出
                             </a>
                         </div>
-                        
+
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>

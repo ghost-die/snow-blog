@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-gray">
+<aside class="main-sidebar sidebar-light-gray">
     <a href="/" class="brand-link" style="display: inline-block;height: 56px;text-align: center;">
 
         <div style="opacity: .8">
@@ -8,7 +8,7 @@
         {{--            <span class="brand-text font-weight-light">laravel</span>--}}
 
     </a>
-    <div class="sidebar">
+    <div class="sidebar sidebar-light-gray">
 
 {{--        <div class="user-panel  ">--}}
 {{--            <div class="float-left image">--}}
@@ -22,7 +22,7 @@
 
 
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item has-treeview">
                     <a href="{{ admin_url('/') }}" class="nav-link">
                         <i class="nav-icon ri-dashboard-line"></i>

@@ -4,9 +4,9 @@
  * @see https://github.com/hhxsv5/laravel-s/blob/master/Settings.md  English
  */
 return [
-    'listen_ip'                => env('LARAVELS_LISTEN_IP', '0.0.0.0'),
+    'listen_ip'                => env('LARAVELS_LISTEN_IP', storage_path('laravels.sock')),
     'listen_port'              => env('LARAVELS_LISTEN_PORT', 5200),
-    'socket_type'              => defined('SWOOLE_SOCK_TCP') ? SWOOLE_SOCK_TCP : 1,
+    'socket_type'              => defined('SWOOLE_SOCK_UNIX_STREAM') ? SWOOLE_SOCK_UNIX_STREAM : 1,
     'enable_coroutine_runtime' => false,
     'server'                   => env('LARAVELS_SERVER', 'LaravelS'),
     'handle_static'            => env('LARAVELS_HANDLE_STATIC', false),
