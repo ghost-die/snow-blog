@@ -8,8 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Models\ArticleCategory;
 
 use App\Traits\HasAdminResourceActions;
+use DebugBar\DebugBar;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
 	use HasAdminResourceActions;
 	
@@ -47,10 +48,11 @@ class CategoryController extends Controller
 				'user_id'=>auth()->id(),
 			]);
 			
-			return redirect(admin_url($this->home))->with('success','操作成功');
+			return notification('操作成功','success');
 		}catch (\Exception $exception)
 		{
-			return back()->with('error',$exception->getMessage());
+			return notification($exception->getMessage(),'error');
+			
 		}
 		
 	}

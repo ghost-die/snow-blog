@@ -4,7 +4,6 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Http\Controllers\Controller;
 use App\Models\Image as ImageModel;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -15,11 +14,11 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
 	public function index()
 	{
-		
+
 		
 		$envs = [
 			['name' => 'PHP version',       'value' => 'PHP/'.PHP_VERSION],

@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <nav>
-        <ul class="pagination justify-content-center rounded-0">
+        <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
@@ -46,22 +46,24 @@
     <style>
         .page-item.active .page-link
         {
-            background-color: #6c757d;
-            border-color: #6c757d;
+            background-color: #8027a1;
+            border-color: #8027a1;
         }
         .page-link{
             color: #6c757d;
         }
 
         .page-link:hover{
-            color: #343a40;
+            color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(105, 113, 135, 0.5);
+            border-color: rgba(105, 113, 135, 0.5);
         }
-        .page-item:first-child .page-link {
-            border-radius:0 !important;
-        }
-        .page-item:last-child .page-link{
-            border-radius:0 !important;
-        }
+        /*.page-item:first-child .page-link {*/
+        /*    border-radius:0 !important;*/
+        /*}*/
+        /*.page-item:last-child .page-link{*/
+        /*    border-radius:0 !important;*/
+        /*}*/
         :focus {
             box-shadow:none !important;
         }

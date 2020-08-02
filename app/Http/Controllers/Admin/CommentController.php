@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Lib\ResponseServe;
 use App\Http\Lib\Tree;
 use App\Models\Comment;
 use App\Traits\HasAdminResourceActions;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class CommentController extends BaseController
 {
 	
-	use HasAdminResourceActions;
+	use HasAdminResourceActions,ResponseServe;
 	
 	public $model = Comment::class;
 	
@@ -56,10 +57,13 @@ class CommentController extends Controller
 			$comment->web_site= $data['web_site'];
 			$comment->save();
 			
-			return back()->with('success','编辑成功');
+
+			
+			return notification('编辑成功','success',route('admin.comment.index'));
 		}catch (\Exception $exception){
 			
-			return back()->with('error',$exception->getMessage());
+			return notification($exception->getMessage(),'error');
+
 		}
 		
 		
@@ -78,15 +82,9 @@ class CommentController extends Controller
 			$ids = collect($ids)->pluck('id');
 			
 			$comment->destroy($ids);
-			return response()->json([
-				'success'=>true,
-				'message'=>'删除成功',
-			]);
+			return $this->success([]);
 		}catch (\Exception $exception){
-			return response()->json([
-				'success'=>false,
-				'message'=>'删除失败---'.$exception->getMessage(),
-			]);
+			return $this->failed('删除失败');
 		}
 		
 	}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Lib\ResponseServe;
 use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\Image;
@@ -13,9 +14,9 @@ use App\Traits\HasAdminResourceActions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ArticleController extends Controller
+class ArticleController extends BaseController
 {
-	use HasAdminResourceActions;
+	use HasAdminResourceActions,ResponseServe;
 	
 	public $model = Article::class;
 	
@@ -26,8 +27,8 @@ class ArticleController extends Controller
 		
 		$this->data = [
 			'data'=>$this->data(),
-			'categorys'=>ArticleCategory::where(['user_id'=>auth()->id()])->get(),
-			'labels'=>Label::get(),
+//			'categorys'=>ArticleCategory::where(['user_id'=>auth()->id()])->get(),
+//			'labels'=>Label::get(),
 		];
 		
 		$this->setView('article.index');
@@ -49,6 +50,18 @@ class ArticleController extends Controller
 		return $this->view();
 	}
 	
+	
+	public function create()
+	{
+		$this->data = [
+			'categorys'=>ArticleCategory::where(['user_id'=>auth()->id()])->get(),
+			'labels'=>Label::get(),
+		];
+		
+		$this->setView('article.create');
+		
+		return $this->view();
+	}
 	
 	public function update(Article $article,Request $request,Label $label)
 	{
@@ -76,9 +89,9 @@ class ArticleController extends Controller
 		
 		if ($article->updateArticle($data,$article,$label))
 		{
-			return back()->with('success','编辑成功');
+			return notification('编辑成功');
 		}else{
-			return back()->with('error',$article->getError());
+			return notification($article->getError(),'error');
 		}
 	}
 	
@@ -112,10 +125,14 @@ class ArticleController extends Controller
 		
 		if ($article->setArticle($data,$label,$articleCategory,$user))
 		{
-			return back()->with('success','创建成功');
+//			admin.article.index
+			
+			return notification('创建成功','success',route('admin.article.index'));
 		}else{
 			
-			return back()->with('error',$article->getError());
+//			return back()->with('error',$article->getError());
+			
+			return notification($article->getError(),'error');
 		}
 		
 		
@@ -145,6 +162,19 @@ class ArticleController extends Controller
 			
 			$response['filename'] = route('imagecache',['template'=>'original','filename'=>$path]);
 			return $response;
+		}
+		
+	}
+	
+	public function destroy(Article $article)
+	{
+		
+		if ($article->delete())
+		{
+			return $this->success([]);
+		}else{
+			return $this->failed('删除失败');
+			
 		}
 		
 	}

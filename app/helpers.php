@@ -99,3 +99,22 @@ if (!function_exists('make_gravatar')) {
 		return "https://www.gravatar.com/avatar/{$hash}?s={$size}&d=identicon";
 	}
 }
+
+if (! function_exists('notification')){
+	/**
+	 * @param null $uri
+	 * @param $message
+	 * @param string $status
+	 * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 */
+	function notification($message,$status = 'success',$uri = null)
+	{
+		if (null !== $uri)
+		{
+			return redirect($uri)->with($status,$message);
+			
+		}else{
+			return back()->with($status,$message);
+		}
+	}
+}

@@ -1,31 +1,20 @@
-
-@extends('admin.layouts.app')
+@extends('admin.layouts.app', [
+    'class' => 'dark-edition ',
+    'titlePage' =>__('Category'),
+    'activePage' => 'category',
+    'active' => '',
+])
 @section('content')
 
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">分类管理</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ admin_url('/') }}">首页</a></li>
-                        <li class="breadcrumb-item active"><a href="#">分类管理</a></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <section class="content">
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-lg-7 col-md-7 col-sm-7">
                     <div class="card card-dark">
-                        <div class="card-header">
-                            <h3 class="card-title">分类管理</h3>
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">{{ __('Category Management') }}</h4>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -33,8 +22,8 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>名称</th>
-                                        <th>文章数</th>
+                                        <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Article Num') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,31 +51,37 @@
                     </div>
 
                 </div>
-                <div class="col-md-5">
-                    <div class="card card-dark">
-                        <div class="card-header">
-                            <h3 class="card-title">新建分类</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form method="post" action="{{ admin_url('category') }}">
-
-                            @csrf
-                            <div class="card-body">
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <form method="post"  autocomplete="off" class="form-horizontal" action="{{ admin_url('category') }}">
 
 
-                                <div class="form-group">
-                                    <label for="name">分类名称</label>
-                                    <input type="text" name="name" class="form-control rounded-0 border-dark" id="name" placeholder="Enter name">
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-outline-dark rounded-0">Submit</button>
-                                </div>
+                        @csrf
+
+                        <div class="card ">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">{{ __('Create') }}</h4>
+{{--                                <p class="card-category">{{ __('User information') }}</p>--}}
                             </div>
-                            <!-- /.card-body -->
+                            <div class="card-body ">
 
-                        </form>
-                    </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="" required="true" aria-required="true"/>
+                                            @if ($errors->has('name'))
+                                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

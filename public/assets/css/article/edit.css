@@ -1,0 +1,109 @@
+.select2-container--default .select2-selection--single{
+    background-color: #202a40;
+    border: none;
+    border-radius: 4px;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: #202a40;
+    border: none;
+    border-radius: 4px;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: 0;
+    /* outline: 0; */
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered{
+    padding-left: 0;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #ffffff;
+    /*color: rgba(255, 255, 255, 0.7);*/
+    line-height: 28px;
+}
+.select2-container .select2-selection--single .select2-selection__rendered{
+    padding-left: 0;
+}
+
+
+.select2-search--dropdown {
+    padding: 0;
+}
+.select2-dropdown {
+    background-color: #202a40;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    left: -100000px;
+    width: 100%;
+    z-index: 1051;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: rgba(200, 200, 200, 0.07);
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: rgba(200, 200, 200, 0.3);
+    color: white;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover{
+    color: #fff;
+}
+.editor-toolbar {
+    opacity: .8;
+    border-top: 1px solid #31384b;
+    border-left: 1px solid #31384b;
+    border-right: 1px solid #31384b;
+}
+.editor-toolbar a{
+    color: white !important;
+}
+.editor-toolbar a.active, .editor-toolbar a:hover{
+    background: #fafafa36;
+}
+
+.editor-toolbar.disabled-for-preview a:not(.no-disable){
+    background: #fafafa36;
+}
+
+.editor-toolbar.fullscreen{
+    background: #1a2035;
+    z-index: 1040;
+}
+.CodeMirror-fullscreen{
+    z-index: 1040;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field{
+    color: #edeef0;
+}
+.select2-results__option{
+    color: white;
+}
+
+.CodeMirror{
+    border: 1px solid #31384c;
+    background: #202a40;
+    color: #9ca0a9;
+}
+
+.CodeMirror-cursor{
+    border-left: 1px solid #fff;
+}
+
+.editor-preview, .editor-preview-side{
+    background: #202a40;
+}
+
+.editor-preview-side{
+    z-index: 1040;
+    border: 1px solid #31384c;
+}
