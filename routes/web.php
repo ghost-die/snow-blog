@@ -26,14 +26,20 @@ Auth::routes();
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function ( Routes $route) {
 
 	$route->get('/','IndexController@index')->name('admin.index');
-	$route->resource('user','UserController');
-	$route->resource('category','CategoryController');
-	$route->resource('article','ArticleController');
-	$route->resource('comment','CommentController');
+	$route->resource('user','UserController')->names('admin.user');
+	$route->resource('category','CategoryController')->names('admin.category');
+	$route->resource('article','ArticleController')->names('admin.article');
+	$route->resource('comment','CommentController')->names('admin.comment');
 	
 	
 	$route->post('/upload','ArticleController@upload')->name('upload_md_image');
 });
+
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+});
+
 
 Route::namespace('Home')->group(function(Routes $route){
 	$route->get('/article/{article}/','ArticleController@index')->name('article.index');

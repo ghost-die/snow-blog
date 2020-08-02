@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-class Markdown{
+class Markdown extends Markdown {
     constructor() {
         this.setting = {
 

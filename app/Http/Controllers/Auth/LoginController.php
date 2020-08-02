@@ -46,9 +46,10 @@ class LoginController extends Controller
 		if ($user->id !==1)
 		{
 			$this->guard()->logout();
-			
-			return back()->with('error','用户不存在');
+			return notification('用户不存在','error');
+		}else{
+			return notification('1','login',$this->redirectTo);
 		}
+		
 	}
-	
 }

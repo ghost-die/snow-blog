@@ -1,123 +1,68 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-{{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-</head>
+@extends('admin.layouts.app', [
+	'class' => 'dark-edition off-canvas-sidebar',
+	'activePage' => 'login',
+	'titlePage' => __('Login')
+	])
 
-<style>
-    .form-control.is-invalid {
-        background-image: none !important;
-    }
-    /*.login-box .card {*/
-    /*    border-radius:0;*/
-    /*}*/
+@section('content')
+    <div class="container" style="height: auto;">
+        <div class="row align-items-center" style="padding-top: 15vh">
 
-    .login-box .login-card-body, .register-card-body {
-        background: #bfbfbf;
-    }
-</style>
-<script>
-    window.Config = {
-        'token': "{{ csrf_token() }}",
-        'auth': "{{ auth()->check() }}",
-        'routes': {
-            'upload_md_image': "{{ route('upload_md_image') }}",
-        }
-    };
-</script>
-<div class="snow-container">
-    <div class="snow foreground"></div>
-    <div class="snow foreground layered"></div>
-    <div class="snow middleground"></div>
-    <div class="snow middleground layered"></div>
-    <div class="snow background"></div>
-    <div class="snow background layered"></div>
-</div>
+            <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+                <form class="form" method="POST" action="{{ route('login') }}">
+                    @csrf
 
+                    <div class="card card-login card-hidden mb-3">
+                        <div class="card-header text-center">
+                            <h4 class="card-title"><strong>{{ __('Login') }}</strong></h4>
 
-<body class="hold-transition login-page bg-dark">
-    <div id="app">
-        <div class="login-box">
-                <div class="login-logo">
-                    {{ config('app.name', 'Laravel') }}
-                </div>
-            <div class="card rounded-0">
-                <div class="card-body login-card-body">
-                    <p class="login-box-msg">{{ __('Sign In') }}</p>
-
-                    <form method="POST" action="{{ route('login') }}">
-                        <div class="input-group mb-3 ">
-                            <input id="email" type="email" placeholder="{{ __('Email') }}" class="form-control rounded-0  @error('email') is-invalid @else border-dark @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                            <div class="input-group-append ">
-                                <div class="input-group-text @error('email') is-invalid text-danger @else border-dark @enderror rounded-0">
-                                    <i class="ri-mail-line"></i>
+                        </div>
+                        <div class="card-body">
+                            <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">email</i>
+                                        </span>
+                                    </div>
+                                    <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email', 'ghost@ghost-ai.com') }}" required>
                                 </div>
+                                @if ($errors->has('email'))
+                                    <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">lock_outline</i>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" value="{{ !$errors->has('password') ? "123123" : "" }}" required>
+                                </div>
+                                @if ($errors->has('password'))
+                                    <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-check mr-auto ml-3 mt-3">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
                             </div>
                         </div>
-                        @csrf
-                        <div class="input-group mb-3">
-                            <input id="password" type="password"  placeholder="{{ __('Password') }}" class="form-control rounded-0  @error('password') is-invalid @else border-dark  @enderror" name="password" required autocomplete="current-password">
-                            <div class="input-group-append">
-                                <div class="input-group-text @error('password') is-invalid text-danger @else border-dark  @enderror rounded-0">
-                                    <i class="ri-key-2-line"></i>
-                                </div>
-                            </div>
+                        <div class="card-footer justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Login') }}</button>
                         </div>
-
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="icheck-primary">
-                                    <input  type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-outline-dark btn-block rounded-0">{{ __("Sign In") }}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</body>
-
-
-
-<!-- Scripts -->
-<script src="{{ asset('js/admin.js') }}"></script>
-
-
-
-<script>
-
-
-    @if ($errors->any())
-    @foreach ($errors->all() as $error)
-
-    toastr.error("{{ $error }}");
-    @endforeach
-    @endif
-
-    @if (session('success'))
-    toastr.success("{{ session('success') }}");
-    @endif
-
-    @if (session('error'))
-    toastr.error("{{ session('error') }}");
-    @endif
-
-</script>
-
-</html>
-
+@endsection

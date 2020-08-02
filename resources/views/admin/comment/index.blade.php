@@ -1,34 +1,26 @@
+@extends('admin.layouts.app', [
+    'class' => 'dark-edition ',
+    'titlePage' =>__('Article Comment'),
+    'activePage' => 'article',
+    'active' => 'article_comment',
+])
 
-@extends('admin.layouts.app')
+
 @section('content')
 
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">评论管理</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ admin_url('/') }}">首页</a></li>
-                        <li class="breadcrumb-item active"><a href="#">评论管理</a></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-    <section class="content">
+
+    <section class="content"  id="pjax-container">
         <div class="container-fluid">
             <div class="card card-dark">
-                <div class="card-header">
-                    <h3 class="card-title">评论管理</h3>
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">评论管理</h4>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-fixed">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>文章ID</th>
+                            <th>文章名称</th>
                             <th>关联ID</th>
                             <th>昵称</th>
                             <th>邮箱</th>
@@ -49,9 +41,16 @@
                                 <td>{{ $v['web_site'] }}</td>
                                 <td class="table-content" data-toggle="tooltip" data-placement="top" title="{{ $v['content'] }}">{{ $v['content'] }}</td>
                                 <td>{{ $v->getRawOriginal('created_at') }}</td>
-                                <td>
-                                    <button data-url="{{ admin_url('comment/'.$v['id'].'/edit') }}" class="btn btn-outline-dark btn-sm edit rounded-0">编辑</button>
-                                    <button data-url="{{ admin_url('comment/'.$v['id']) }}" class="btn btn-outline-danger btn-sm deleted rounded-0">删除</button>
+                                <td width="200">
+
+                                    <a rel="tooltip" class="btn btn-sm btn-success btn-link" href="{{ route('admin.comment.edit',['comment'=>$v['id']]) }}"  title="Edit">
+                                        <i class="material-icons">edit</i>
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                    <a rel="tooltip"  class="btn btn-sm btn-danger btn-link deleted"  data-url="{{ route('admin.comment.destroy',['comment'=>$v['id']]) }}" title="Delete">
+                                        <i class="material-icons">delete</i>
+                                        <div class="ripple-container"></div>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -64,62 +63,27 @@
             </div>
         </div>
     </section>
-    <style>
 
-        /*table{*/
-        /*    width:100px;*/
-        /*    table-layout:fixed;!* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 *!*/
-        /*}*/
-
-        .table-content{
-            width: 200px;overflow: hidden;
-            word-break:keep-all;/* 不换行 */
-            white-space:nowrap;/* 不换行 */
-            text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
-        }
-
-        .swal-footer {
-            text-align: center;
-        }
-        .swal-button {
-            border:1px solid #343a40;
-            color: #343a40;
-            background: none;
-            border-radius:0 !important;
-        }
-        .swal-button:focus {
-            box-shadow:none !important;
-            background-color: #343a40;
-            color: #ffffff;
-        }
-
-        .swal-button:not([disabled]):hover {
-            background-color: #343a40;
-            color: #ffffff;
-        }
-        .swal-button--cancel:not([disabled]):hover{
-            background-color: #e8e8e8;
-            border-color: #e8e8e8 ;
-            color: #343a40;
-        }
-    </style>
 @endsection
-@section('script')
-<script>
 
-    $('.table-content').tooltip()
+@push('css')
+    <link href="{{ asset('assets') }}/plugins/sweetalert-2.1.0/docs/assets/css/app.css?v=2.1.0" rel="stylesheet" />
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('assets') }}/plugins/sweetalert-2.1.0/docs/assets/sweetalert/sweetalert.min.js"></script>
 
 
-    $('.edit').on('click',function () {
-        window.location.href = $(this).data('url');
-    });
+    <script>
+    // $('.table-content').tooltip()
+
 
     $('.deleted').on('click',function () {
        console.log($(this).data('url'))
 
         let url = $(this).data('url');
         swal({
-            title: "确定要删除该文章吗？",
+            title: "确定要删除该评论吗？",
             icon: 'warning',
             buttons: {
                 cancel: {
@@ -142,23 +106,22 @@
                     url:url,
                     type:"DELETE",
                     data:{"_method":'DELETE','_token':Config.token},
-                    success:function(str){
+                    success:function(data){
 
-                        console.log(str)
-                        // var data = eval("("+str+")");
-                        if(str.success){
+                        console.log(data)
+
+                        if(data.status==='success'){
                             // 刷新数据
 
+                            $.pjax.reload('#pjax-container');
+                            md.notification("删除成功",'primary','add_alert')
 
-                            toastr.success(str.message);
-                            $.pjax.reload('#pjax-container')
-                            // swal('提示','删除工单成功!');
                         }else{
-                            // $.pjax.reload('#pjax-container')
-                            toastr.error(str.message);
-                            $.pjax.reload('#pjax-container')
-                            // swal('提示','删除工单失败!');
+                            md.notification("删除失败",'danger','error')
                         }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        md.notification("删除失败",'danger','error')
                     }
                 });
 
@@ -167,6 +130,6 @@
             }
         })
     });
-</script>
 
-@endsection
+    </script>
+@endpush

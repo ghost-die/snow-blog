@@ -1,78 +1,107 @@
+@extends('admin.layouts.app', [
+    'class' => 'dark-edition ',
+    'titlePage' =>__('Article Comment'),
+    'activePage' => 'article',
+    'active' => 'article_comment',
+])
 
-@extends('admin.layouts.app')
+
 @section('content')
 
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">评论管理</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ admin_url('/') }}">首页</a></li>
-                        <li class="breadcrumb-item active"><a href="#">评论管理</a></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
     <section class="content">
         <div class="container">
-            <div class="card card-dark">
-                <div class="card-header">
-                    <h3 class="card-title">编辑评论</h3>
-                </div>
+            <form method="post" action="{{route('admin.comment.update',['comment'=>$comment->id]) }}" autocomplete="off" class="form-horizontal">
+                <div class="card">
+                    <div class="card-header-primary ">
+                        <h4 class="card-title">编辑文章</h4>
+                    </div>
 
-                <div class="card-body">
-                    <form method="post" action="{{ admin_url('comment/'.$comment->id) }}">
-                        <input type="hidden" name="_method" value="PUT">
+                    <div class="card-body">
+
 
                         @csrf
+                        @method('put')
 
-                    <div class="form-group">
-                        <label for="content">评论*</label>
-                        <textarea style="min-height: 160px" class="form-control rounded-0  @error('content') is-invalid @else border-dark @enderror" id="content" name="content" required  autocomplete="off" >{{ $comment['content'] }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">昵称*</label>
-                        <input type="text" class="form-control rounded-0  @error('name') is-invalid @else border-dark @enderror"
-                               id="name" name="name" placeholder="Ghost" required value="{{ $comment['name'] }}" autocomplete="off" >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">邮箱*</label>
-                        <input type="email" class="form-control rounded-0  @error('email') is-invalid @else border-dark @enderror" id="email" name="email"
-                               placeholder="name@email.com" required value="{{  $comment['email']  }}" autocomplete="off" >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="web_site">主页</label>
-                        <input type="text" class="form-control rounded-0  @error('web_site') is-invalid @else border-dark @enderror"
-                               id="web_site" name="web_site" placeholder="https://" value="{{ $comment['web_site'] }}" autocomplete="off" >
-                    </div>
+                        <div class="row">
+                            <label for="input-content" class="col-sm-2 col-form-label text-right">{{ __('Content') }}</label>
+                            <div class="col-sm-9">
+                                <div class="form-group{{ $errors->has('content') ? ' has-danger' : '' }}">
+                                    <textarea
+                                            rows="5"
+                                            class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}"
+                                            name="content"
+                                            id="input-content"
+                                            required >{{ old('content') ?? $comment->content  }}</textarea>
 
 
-
-                    <div class="form-group">
-                        <div class="col-sm-10 offset-sm-2">
-                            <button type="submit"  class="btn btn-outline-dark">提交</button>
+                                    @if ($errors->has('content'))
+                                        <span id="content-error" class="error text-danger" for="input-content">{{ $errors->first('content') }}</span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <label for="input-name" class="col-sm-2 col-form-label text-right">{{ __('Nick Name') }}</label>
+                            <div class="col-sm-9">
+                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                    <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Nick Name') }}" value="{{ old('name')??$comment->name  }}" required />
+                                    @if ($errors->has('name'))
+                                        <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <label for="input-email" class="col-sm-2 col-form-label text-right">{{ __('Email') }}</label>
+                            <div class="col-sm-9">
+                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                    <input class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email')??$comment->email  }}" required />
+                                    @if ($errors->has('email'))
+                                        <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('name') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <label for="input-web_site" class="col-sm-2 col-form-label text-right">{{ __('Web Site') }}</label>
+                            <div class="col-sm-9">
+                                <div class="form-group{{ $errors->has('web_site') ? ' has-danger' : '' }}">
+                                    <input class="form-control {{ $errors->has('web_site') ? ' is-invalid' : '' }}" name="web_site" id="input-web_site" type="text" placeholder="{{ __('Web Site') }}" value="{{ old('web_site')??$comment->web_site  }}" required />
+                                    @if ($errors->has('web_site'))
+                                        <span id="web_site-error" class="error text-danger" for="input-web_site">{{ $errors->first('web_site') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
                     </div>
 
-                </form>
+                    <div class="card-footer ml-auto mr-auto">
+                        <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                    </div>
+
+
                 </div>
-            </div>
+            </form>
         </div>
     </section>
-    <style>
 
-    </style>
 @endsection
-@section('script')
+
+@push('scripts')
 <script>
 
 
 </script>
 
-@endsection
+@endpush

@@ -1,124 +1,84 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
+
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets') }}/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        {{ config('ghost.title') }} - {{ $titlePage }}
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link href="{{ asset('assets') }}/css/font-awesome.min.css" rel="stylesheet" />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link href="{{ asset('assets') }}/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+
+    <!-- CSS Files -->
+    <!-- CSS Plugin -->
 
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    @stack('css')
 
-    <!-- Styles -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
-<script>
-    window.Config = {
-        'token': "{{ csrf_token() }}",
-        'auth': "{{ auth()->check() }}",
-        'routes': {
-            'upload_md_image': "{{ route('upload_md_image') }}",
-        }
-    };
-</script>
-<style>
 
-</style>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-    <nav class="main-header navbar navbar-expand navbar-light" style="padding-right: 0">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="ri-layout-line"></i></a>
-            </li>
-        </ul>
+<body class="{{ $class }}">
 
-        <ul class="nav navbar-nav  ml-auto" >
-            <li class="dropdown user user-menu nav-item" style="padding-right: 1rem;">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ auth()->user()->avatar }}" style="margin-top: 0" class="user-image" alt="User Image">
-                    <span class="hidden-xs">{{ auth()->user()->name }}</span>
-                </a>
+    @auth()
+        @include('admin.layouts.page_templates.auth')
+        @include('admin.layouts.navbars.fixed-plugin')
+    @endauth
 
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="user-header">
-                        <img src="{{ auth()->user()->avatar }}"  class="img-circle" alt="User Image">
-                        <p>
-                            {{ auth()->user()->name }}
-                            <small>Member since admin {{ auth()->user()->created_at }}</small>
-                        </p>
-                    </li>
-                    <li class="border-top clearfix " style="padding: .5rem 1rem;" >
+    @guest
+        @include('admin.layouts.page_templates.guest')
+    @endguest
 
-                        <div class="float-left">
-                            <a href="{{ admin_url('auth/setting') }}" class="btn btn-sm border btn-default btn-flat">编辑</a>
-                        </div>
-                        <div class="float-right">
 
-                            <a class="btn btn-sm btn-default border rounded-0" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                退出
-                            </a>
-                        </div>
+    <!-- Scripts -->
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    @include('admin.layouts._left')
+    <script>
+        window.Config = {
+            'token': "{{ csrf_token() }}",
+            'auth': "{{ auth()->check() }}",
+        };
+    </script>
 
-    <div class="content-wrapper" id="pjax-container">
-        @yield('content')
-    </div>
-    <footer class="main-footer">
-        <strong>{{ config('app.name', 'Laravel') }} &copy; {{ date('Y') }} </strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 0.1
-        </div>
-    </footer>
 
-</div>
+    <!--   Core JS Files   -->
+    <script src="{{ asset('assets') }}/js/core/jquery.min.js"></script>
+    <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
+    <script src="{{ asset('assets') }}/js/core/bootstrap-material-design.min.js"></script>
+{{--    <script src="https://unpkg.com/default-passive-events"></script>--}}
+
+    <script src="{{ asset('assets') }}/js/plugins/index.umd.js"></script>
+
+
+    <script src="{{ asset('assets') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+{{--    <script async defer src="https://buttons.github.io/buttons.js"></script>--}}
+
+    <script src="{{ asset('assets') }}/js/plugins/buttons.js"></script>
+    <!-- Plugin    -->
+
+    <script src="{{ asset('assets') }}/plugins/jquery-pjax-2.0.1/jquery.pjax.js"></script>
+    <!-- Chartist JS -->
+    <script src="{{ asset('assets') }}/js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{{ asset('assets') }}/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{ asset('assets') }}/js/material-dashboard.js?v=2.1.0"></script>
+
+
+    @stack('scripts')
+
+    @include('admin.layouts.navbars.fixed-plugin-js')
+
+    @include('admin.layouts.notifications.index')
 
 </body>
 
-
-
-
-<!-- Scripts -->
-<script src="{{ asset('js/admin.js') }}"></script>
-
-
-
-@yield('script')
-
-
-<script>
-
-    @if ($errors->any())
-    @foreach ($errors->all() as $error)
-
-    toastr.error("{{ $error }}");
-    @endforeach
-    @endif
-
-    @if (session('success'))
-    toastr.success("{{ session('success') }}");
-    @endif
-
-    @if (session('error'))
-    toastr.error("{{ session('error') }}");
-    @endif
-
-</script>
 </html>
