@@ -12,6 +12,7 @@ use App\Models\Read;
 use App\Traits\HasResourceActions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Str;
 
 class ArticleController extends BaseController
 {
@@ -27,8 +28,11 @@ class ArticleController extends BaseController
 		$comment_data['email'] = session('email');
 		$comment_data['web_site'] = session('web_site');
 		
+		
 		$assign = [
-			'title' =>'内容详情',
+			'title' =>$article->title,
+			'description' =>Str::of(stripTags( $article->content ))->limit(250),
+			'keywords'=>$article->label()->pluck('name')->implode(','),
 			'data' => $article,
 			'comments'=>$comments,
 			'comment_data'=>$comment_data
