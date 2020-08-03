@@ -33,9 +33,13 @@
     @endforeach
 
 
-    <div class="div-center">
+
         {{ $data->links() }}
-    </div>
+
+
+{{--    <div class="div-center">--}}
+{{--        --}}
+{{--    </div>--}}
 
 
 

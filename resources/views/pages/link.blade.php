@@ -61,13 +61,7 @@
                 </div>
             </div>
         </div>
-
-
-
     </main>
-
-
-
 </div>
 </body>
 <style>
@@ -78,9 +72,7 @@
         background: #fafafa;
     }
     .link-icon{
-        -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-        flex-shrink: 0;
+
         width: 40px;
         height: 40px;
         line-height: 40px;
@@ -94,10 +86,11 @@
         color: #3194d0;
         margin-left: 10px;
         overflow: hidden;
-        -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
         white-space: nowrap;
         line-height: 40px;
+        width: 470px;
+
     }
 </style>
 
