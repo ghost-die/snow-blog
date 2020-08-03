@@ -30,28 +30,30 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function (
 	$route->resource('category','CategoryController')->names('admin.category');
 	$route->resource('article','ArticleController')->names('admin.article');
 	$route->resource('comment','CommentController')->names('admin.comment');
+	$route->resource('link','LinkController')->names('admin.link');
 	
 	
 	$route->post('/upload','ArticleController@upload')->name('upload_md_image');
 });
 
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
-});
+
 
 
 Route::namespace('Home')->group(function(Routes $route){
 	$route->get('/article/{article}/','ArticleController@index')->name('article.index');
 	
-	
 	$route->post('/article/{article}/comment/{comment?}','ArticleController@comment')->name('article.comment');
-	
 	$route->get('/', 'IndexController@index');
 	$route->get('category/{article_category}', 'CategoryController@index')->name('category.index');
 	$route->get('tags/{label}', 'TagsController@index')->name('tags.index');
 	$route->get('search', 'SearchController@index')->name('search.index');
+	
+	$route->get('go-wild', 'IndexController@link')->name('go-wild');
+	
 });
 
-
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+});
 

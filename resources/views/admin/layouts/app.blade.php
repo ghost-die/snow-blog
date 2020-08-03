@@ -14,9 +14,12 @@
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link href="{{ asset('assets') }}/css/font-awesome.min.css" rel="stylesheet" />
+{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">--}}
 
 
     <link href="{{ asset('assets') }}/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+
+
 
     <!-- CSS Files -->
     <!-- CSS Plugin -->
@@ -50,6 +53,12 @@
 
     <!--   Core JS Files   -->
     <script src="{{ asset('assets') }}/js/core/jquery.min.js"></script>
+
+
+{{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>--}}
+
+
+
     <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('assets') }}/js/core/bootstrap-material-design.min.js"></script>
 {{--    <script src="https://unpkg.com/default-passive-events"></script>--}}
@@ -71,7 +80,6 @@
     <script src="{{ asset('assets') }}/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('assets') }}/js/material-dashboard.js?v=2.1.0"></script>
-
 
     @stack('scripts')
 

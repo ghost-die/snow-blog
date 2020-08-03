@@ -18,15 +18,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<script>
-    window.Config = {
-        'token': "{{ csrf_token() }}",
-        'auth': "{{ \Illuminate\Support\Facades\Auth::check() }}",
-        'routes': {
-            'upload_md_image': "{{ route('upload_md_image') }}",
-        }
-    };
-</script>
+
 <style>
 
 </style>
@@ -59,7 +51,15 @@
 </body>
 
 
-
+<script>
+    window.Config = {
+        'token': "{{ csrf_token() }}",
+        'auth': "{{ \Illuminate\Support\Facades\Auth::check() }}",
+        'routes': {
+            'upload_md_image': "{{ route('upload_md_image') }}",
+        }
+    };
+</script>
 
 <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -90,5 +90,12 @@
 
 
     </script>
+
+<script>
+
+
+
+
+</script>
 
 </html>

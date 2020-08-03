@@ -115,27 +115,14 @@ class ArticleController extends BaseController
 			'label.array' => '标签不合法!',
 		];
 		$this->validationMessages($request);
-		
-		
-		
 		$data = $request->all(['title','content','category_id','label']);
-		
 		$user = \auth()->user();
-		
 		if ($article->setArticle($data,$label,$articleCategory,$user))
 		{
-//			admin.article.index
-			
 			return notification('创建成功','success',route('admin.article.index'));
 		}else{
-			
-//			return back()->with('error',$article->getError());
-			
 			return notification($article->getError(),'error');
 		}
-		
-		
-		
 	}
 	
 	

@@ -60,6 +60,15 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="nav-item {{ $activePage == 'link' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.link.index') }}">
+                    <i class="material-icons">link</i>
+                    <p>{{ __('Link') }}</p>
+                </a>
+            </li>
+
+
 {{--            <li class="nav-item ">--}}
 {{--                <a class="nav-link" href="./icons.html">--}}
 {{--                    <i class="material-icons">bubble_chart</i>--}}

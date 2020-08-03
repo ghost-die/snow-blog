@@ -50,7 +50,9 @@
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a target="_blank" href="https://v4.bootcss.com/">Bootstrap</a> </li>
+                @foreach($rightlink as $link)
+                <li class="list-group-item"><a href="{{ $link['uri'] }}">{{ $link['name'] }}</a> </li>
+                @endforeach
             </ul>
         </div>
 

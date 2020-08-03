@@ -27,6 +27,13 @@
                     <a class="nav-link pt-0 pb-0" href="{{ route('category.index',['article_category'=>$item['id']]) }}">{{ $item['name'] }} <span class="sr-only">(current)</span></a>
                 </li>
                 @endforeach
+
+                @foreach($toplink as $item)
+                    <li class="nav-item">
+                        <a class="nav-link pt-0 pb-0" target="_blank" href="{{ $item['uri'] }}">{{ $item['name'] }}</a>
+                    </li>
+                @endforeach
+
             </ul>
         </div>
     </div>

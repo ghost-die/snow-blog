@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\Label;
+use App\Models\Link;
 
 class BaseController extends Controller
 {
@@ -35,6 +36,8 @@ class BaseController extends Controller
 	{
 		
 		$nav['nav'] = ArticleCategory::all()->toArray();
+		$nav['toplink'] = Link::query()->where(['is_top'=>1])->get(['name','uri'])->toArray();
+		$nav['rightlink'] = Link::query()->where(['is_top'=>0])->get(['name','uri'])->toArray();
 		
 		
 		$top['top'] = Article::query()->limit(5)->orderBy('created_at','DESC')->get(['id','title'])->toArray();
