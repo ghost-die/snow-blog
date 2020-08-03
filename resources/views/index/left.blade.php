@@ -33,8 +33,15 @@
     @endforeach
 
 
+        <div class="card rounded-0"  >
+            <div class="card-body" >
 
-        {{ $data->links() }}
+                {{ $data->links() }}
+
+            </div>
+        </div>
+
+
 
 
 {{--    <div class="div-center">--}}
