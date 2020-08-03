@@ -170,6 +170,7 @@ class ArticleController extends BaseController
 		
 		$article->label()->decrement('num',1);
 		
+		$article->category()->decrement('article_num',1);
 		if ($article->delete())
 		{
 			return $this->success([]);

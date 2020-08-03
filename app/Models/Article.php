@@ -41,29 +41,26 @@ class Article extends Model
 	public function setArticle(array $data,Label $label,ArticleCategory $articleCategory,User $user)
 	{
 		
-		$articles['title'] = $data['title'];
-		$articles['original_content'] = $data['content'];
-		$articles['content'] = (new Parsedown())->parse($data['content']);
-		$articles['category_id'] = $data['category_id'];
-		$articles['author'] = $user->name;
-		$articles['user_id'] = $user->id;
+		
 		
 		DB::beginTransaction();
 		
 		try {
-			$article_data = $this->set($articles);
-			$articleCategory->bcInc($articles['category_id'],'article_num',1);
-			collect($data['label'])->each(function ($v) use (&$label,$article_data){
-				$label_data = $label->getOrSet(['name'=>$v]);
-				DB::table('article_to_label')->insert(
-					[
-						'article_id'=>$article_data->id,
-						'label_id'=>$label_data->id,
-						'created_at'=>Carbon::now(),
-						'updated_at'=>Carbon::now(),
-					]
-				);
-			});
+			
+			$articles['title'] = $data['title'];
+			$articles['original_content'] = $data['content'];
+			$articles['content'] = (new Parsedown())->parse($data['content']);
+			$articles['category_id'] = $data['category_id'];
+			$articles['author'] = $user->name;
+			$articles['user_id'] = $user->id;
+			
+			$thisModel = $this->set($articles);
+			
+			$thisModel->category()->increment('article_num',1);
+			
+			$this->belongsLabel($data['label'],$label,$thisModel);
+			
+			
 			
 			DB::commit();
 			return true;
@@ -87,7 +84,7 @@ class Article extends Model
 			$article->content = (new Parsedown())->parse($data['content']);
 			
 			
-			$this->belongsLabel($data['label'],$label,$article);
+			$this->belongsLabel($data['label'],$label);
 			
 			$article->save();
 			
@@ -104,34 +101,36 @@ class Article extends Model
 			return false;
 		}
 	}
+
 	
-	
-	public function belongsLabel($data,$label){
+	public function belongsLabel($data,Label $label,$thisModel=null){
 		
 		
+		if (null === $thisModel){
+			$thisModel = $this;
+		}
 		$labelData = [];
 		$time = Carbon::now();
 		
-		$this->label()->decrement('num',1);
+		$thisModel->label()->decrement('num',1);
 		
-		collect($data)->each(function ($v) use (&$labelData,$label,$time){
-			$label_data = $label->getOrSet(['name'=>$v]);
+		collect($data)->each(function ($v) use (&$labelData,$label,$thisModel,$time){
 			
+			$label_data = $label->query()->firstOrCreate(['name'=>$v]);
 			
 			$labelData[] = [
-				'article_id'=>$this->id,
+				'article_id'=>$thisModel->id,
 				'label_id'=>$label_data->id,
 				'created_at'=>$time,
 				'updated_at'=>$time,
 			];
-			
-			
-			DB::table('article_to_label')->where(['article_id'=>$this->id])->delete();
-			DB::table('article_to_label')->insert($labelData);
-			
 		});
 		
-	
+		
+		DB::table('article_to_label')->where(['article_id'=>$thisModel->id])->delete();
+		DB::table('article_to_label')->insert($labelData);
+		
+		$thisModel->label()->increment('num',1);
 	}
 	
 	public function getCreatedAtAttribute ( $created_at )

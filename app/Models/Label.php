@@ -16,27 +16,19 @@ class Label extends Model
 	];
 	
 	
-	public function getOrSet ( $data ,$float = false)
-	{
-		
-		try {
-			$res = $this->query()->where($data)->firstOrFail();
-		
-			if ($float)
-			{
-				return  $res;
-			}else{
-				$res->num +=1;
-				$res->save();
-				return $res;
-			}
-			
-		}catch (\Exception $exception){
-			
-			$data = array_merge($data,['num'=>1]);
-			return $this->set($data);
-		}
-	}
+//	public function getOrSet ( $data ,$float = false)
+//	{
+//
+//		try {
+//			return  $this->query()->where($data)->firstOrFail();
+//
+//
+//		}catch (\Exception $exception){
+//
+//			$data = array_merge($data,['num'=>1]);
+//			return $this->set($data);
+//		}
+//	}
 	
 	public function article()
 	{
