@@ -17,7 +17,7 @@ class TagsController extends BaseController
 		
 		$assign = [
 			'title' => '分类',
-			'data' =>$label->article()->paginate(15)
+			'data' =>$label->article()->orderBy('created_at','DESC')->simplePaginate()
 		];
 		$this->setAssign( $assign);
 		

@@ -34,7 +34,7 @@ class Article extends Model
 	public function getPaginateData()
 	{
 		
-		return $this->query()->orderBy('created_at','DESC')->simplePaginate(1);
+		return $this->query()->orderBy('created_at','DESC')->simplePaginate();
 		
 	}
 	
