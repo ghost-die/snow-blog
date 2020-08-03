@@ -120,7 +120,6 @@ class ArticleController extends BaseController
 		
 		$data = $request->all(['title','content','category_id','label']);
 		
-		
 		$user = \auth()->user();
 		
 		if ($article->setArticle($data,$label,$articleCategory,$user))
@@ -168,6 +167,8 @@ class ArticleController extends BaseController
 	
 	public function destroy(Article $article)
 	{
+		
+		$article->label()->decrement('num',1);
 		
 		if ($article->delete())
 		{

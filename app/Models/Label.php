@@ -32,7 +32,8 @@ class Label extends Model
 			}
 			
 		}catch (\Exception $exception){
-		
+			
+			$data = array_merge($data,['num'=>1]);
 			return $this->set($data);
 		}
 	}

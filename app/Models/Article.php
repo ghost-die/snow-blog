@@ -86,28 +86,14 @@ class Article extends Model
 			$article->original_content = $data['content'];
 			$article->content = (new Parsedown())->parse($data['content']);
 			
+			
+			$this->belongsLabel($data['label'],$label,$article);
+			
 			$article->save();
 			
-			collect($data['label'])->each(function ($v) use (&$label,$article){
-				$label_data = $label->getOrSet(['name'=>$v]);
-				
-				$num = DB::table('article_to_label')->where([
-					'article_id'=>$article->id,
-					'label_id'=>$label_data->id,
-				])->count();
-				if (! ($num > 0))
-				{
-					DB::table('article_to_label')->insert(
-						[
-							'article_id'=>$article->id,
-							'label_id'=>$label_data->id,
-							'created_at'=>Carbon::now(),
-							'updated_at'=>Carbon::now(),
-						]
-					);
-				}
-				
-			});
+			
+			
+			
 			DB::commit();
 			return true;
 		}catch (\Exception $exception)
@@ -117,9 +103,35 @@ class Article extends Model
 			$this->setError($exception->getMessage());
 			return false;
 		}
+	}
+	
+	
+	public function belongsLabel($data,$label){
 		
 		
+		$labelData = [];
+		$time = Carbon::now();
 		
+		$this->label()->decrement('num',1);
+		
+		collect($data)->each(function ($v) use (&$labelData,$label,$time){
+			$label_data = $label->getOrSet(['name'=>$v]);
+			
+			
+			$labelData[] = [
+				'article_id'=>$this->id,
+				'label_id'=>$label_data->id,
+				'created_at'=>$time,
+				'updated_at'=>$time,
+			];
+			
+			
+			DB::table('article_to_label')->where(['article_id'=>$this->id])->delete();
+			DB::table('article_to_label')->insert($labelData);
+			
+		});
+		
+	
 	}
 	
 	public function getCreatedAtAttribute ( $created_at )
