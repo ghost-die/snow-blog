@@ -5,5 +5,6 @@
 
         {{ config('app.name', 'Laravel') }} {{ date('Y') }} © <a href="mailto:ghost@ghost-ai.com">ghost@ghost-ai.com</a>
         <a href="http://www.beian.miit.gov.cn/" target="_blank">皖ICP备17004047号-1</a>
+
     </div>
 </div>

@@ -51,6 +51,8 @@ Route::namespace('Home')->group(function(Routes $route){
 	
 	$route->get('go-wild', 'IndexController@link')->name('go-wild');
 	
+	$route->post('/add-link', 'LinkController@store')->name('add.link');
+	
 });
 
 Route::group(['middleware' => 'auth'], function () {
