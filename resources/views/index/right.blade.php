@@ -62,10 +62,7 @@
 
     <div class="card mt-3  rounded-0"  >
         <div class="card-body" >
-
-{{--            <a href="https://clustrmaps.com/site/1b21z" title="Visit tracker"><img src="//clustrmaps.com/map_v2.png?cl=000000&w=300&t=n&d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&co=ffffff&ct=ffffff" /></a>--}}
-
-
+            <a href="https://clustrmaps.com/site/1b21z" title="Visit tracker"><img src="//clustrmaps.com/map_v2.png?cl=000000&w=300&t=n&d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&co=ffffff&ct=ffffff" /></a>
         </div>
     </div>
 
