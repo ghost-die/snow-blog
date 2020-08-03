@@ -58,8 +58,8 @@
 
 
     <div class="card mt-3  rounded-0"  >
-        <div class="card-body" style="width:200px;margin: 0 auto;min-height: 214px">
-            <script  id="clstr_globe" src="//cdn.clustrmaps.com/globe.js?d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk"></script>
+        <div class="card-body" >
+            <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&cl=ffffff&w=a"></script>
         </div>
     </div>
 
