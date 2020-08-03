@@ -62,7 +62,7 @@
 
     <div class="card mt-3  rounded-0"  >
         <div class="card-body" >
-{{--            <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&cl=ffffff&w=a"></script>--}}
+            <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&cl=ffffff&w=a"></script>
         </div>
     </div>
 
