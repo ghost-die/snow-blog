@@ -50,9 +50,9 @@
 
         </div>
         <div class="card-body">
-            <ul class="list-group list-group-flush">
+            <ul class="list-group pl-4">
                 @foreach($rightlink as $link)
-                <li class="list-group-item"><a href="{{ $link['uri'] }}">{{ $link['name'] }}</a> </li>
+                <li class=""><a class="text-decoration-none" href="{{ $link['uri'] }}">{{ $link['name'] }}</a> </li>
                 @endforeach
             </ul>
         </div>
@@ -62,7 +62,10 @@
 
     <div class="card mt-3  rounded-0"  >
         <div class="card-body" >
-            <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&cl=ffffff&w=a"></script>
+
+            <a href="https://clustrmaps.com/site/1b21z" title="Visit tracker"><img src="//clustrmaps.com/map_v2.png?cl=000000&w=300&t=n&d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&co=ffffff&ct=ffffff" /></a>
+
+
         </div>
     </div>
 
