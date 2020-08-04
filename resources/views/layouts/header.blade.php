@@ -20,11 +20,11 @@
         <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item @if(!isset($category_id)) active @endif">
-                    <a class="nav-link pt-0 pb-0" href="/">主页 <span class="sr-only">(current)</span></a>
+                    <a class="nav-link pt-0 pb-0" href="/">主页</a>
                 </li>
                 @foreach($nav as $item)
                 <li class="nav-item @if(isset($category_id) && $category_id===$item['id']) active @endif">
-                    <a class="nav-link pt-0 pb-0" href="{{ route('category.index',['article_category'=>$item['id']]) }}">{{ $item['name'] }} <span class="sr-only">(current)</span></a>
+                    <a class="nav-link pt-0 pb-0" href="{{ route('category.index',['article_category'=>$item['id']]) }}">{{ $item['name'] }}</a>
                 </li>
                 @endforeach
 
