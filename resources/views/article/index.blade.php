@@ -11,23 +11,22 @@
         <div class="row justify-content-around">
 
 
-            <div class="col-sm-8" id="content">
-                <div class="card rounded-0" >
+            <div class="col-sm-8 " id="content">
+                <div class="card rounded-0 p-4" >
                     <div class="card-body">
-                        <h2 class="card-title font-weight-light text-center border-bottom pb-4 pt-4  clearfix">
+                        <h3 class="card-title font-weight-normal clearfix">
                             {{ $data->title }}
-                            <p class="card-text font-weight-light" style="font-size: 12px"><small class="text-muted">{{ $data->created_at }}</small></p>
-                        </h2>
-                        <div class="card-text mt-5" id="md-content">
+                        </h3>
+                        <p class="card-text font-weight-light mt-1" style="font-size: 12px"><small class="text-muted">{{ $data->created_at }}</small></p>
+                        <ul class="text-muted font-weight-light" style="margin-left: -1.5rem">
+                            <li>本文地址：<a>{{ url()->full()}}</a></li>
+                            <li>转载请注明出处</li>
+                        </ul>
+                        <div class="card-text " id="md-content">
                             {!! $data->content !!}
                         </div>
                     </div>
-                    <div class="card-footer bg-white text-danger">
-                        本文为{{ config('app.name', 'Laravel') }}原创文章,转载无需和我联系,但请注明来自<a href="{{ config('app.url') }}">{{ config('app.name', 'Laravel') }}</a>
-                    </div>
                 </div>
-
-
 
 
 
@@ -91,8 +90,6 @@
 
     <style>
 
-
-
     </style>
 
 @endsection
@@ -120,17 +117,7 @@
         })
 
 
-        $("#md-content").find('a').each(function () {
-            let href = $(this).attr('href');
-            console.log(href);
-            if(href !==undefined)
-            {
-                if (href.indexOf("{{ config('app.url') }}") === -1) {
-                    $(this).attr('href', "/go-wild?url="+ encodeURIComponent(href));
-                }
-            }
 
-        });
     </script>
 
 

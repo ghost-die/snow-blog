@@ -94,7 +94,17 @@
 <script>
 
 
+    $("#md-content").find('a').each(function () {
+        let href = $(this).attr('href');
+        console.log(href);
+        if(href !==undefined)
+        {
+            if (href.indexOf("{{ config('app.url') }}") === -1) {
+                $(this).attr('href', "/go-wild?url="+ encodeURIComponent(href));
+            }
+        }
 
+    });
 
 </script>
 

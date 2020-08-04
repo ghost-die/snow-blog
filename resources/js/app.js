@@ -2,6 +2,7 @@ require('./bootstrap');
 
 class Markdown extends Markdown {
     constructor() {
+        super();
         this.setting = {
 
             'textarea': {

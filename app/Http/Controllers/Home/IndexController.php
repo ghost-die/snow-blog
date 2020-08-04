@@ -7,6 +7,9 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\BaseController;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use function GuzzleHttp\Psr7\str;
 
 
 class IndexController extends BaseController
@@ -17,11 +20,15 @@ class IndexController extends BaseController
 		
 		$this->view = 'index';
 		
+		$data = $article->getPaginateData();
+		
+		$data = dataFormatting($data);
 		
 		$assign = [
 			'title' => '首页',
-			'data' =>$article->getPaginateData()
+			'data' =>$data
 		];
+		
 		$this->setAssign( $assign);
 		
 		return $this->response();

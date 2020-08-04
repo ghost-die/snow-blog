@@ -18,7 +18,16 @@ class SearchController extends BaseController
 		$search = $request->get('search');
 		
 		
-		$data = $article->query()->where('title','like','%'.$search.'%')->paginate(15);
+		$data = $article
+			->query()
+			->where('title','like','%'.$search.'%')
+			->orderBy('created_at','DESC')
+			->simplePaginate();
+		
+		
+		$data = dataFormatting($data);
+		
+		
 		
 		$this->view = 'index';
 		

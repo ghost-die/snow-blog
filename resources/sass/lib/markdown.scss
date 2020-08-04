@@ -1,17 +1,62 @@
 
 
 
-@import "~prismjs";
-@import "~prismjs/plugins/line-numbers/prism-line-numbers.css";
-@import "~prismjs/plugins/toolbar/prism-toolbar.css";
+@import "~prismjs/themes/prism-coy.css";
+//@import "~prismjs/plugins/line-numbers/prism-line-numbers.css";
+//@import "~prismjs/plugins/toolbar/prism-toolbar.css";
 @import "~prismjs/plugins/previewers/prism-previewers.css";
 @import "~prismjs/plugins/command-line/prism-command-line.css";
 @import "~prismjs/plugins/treeview/prism-treeview.css";
 
 
+/* Code blocks */
+pre[class*="language-"] {
+  border-radius: 0;
+}
+#md-content p{
+  font-weight: 300 !important;
+}
+pre[class*="language-"] {
+  font-family: sans-serif;
+}
+
+pre[class*="language-"]>code {
+  position: relative;
+  border-left: 10px solid #c9c9c9;
+  box-shadow: -1px 0 0 0 #c9c9c9, 0 0 0 1px #dfdfdf;
+  background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+  background-size: 3em 3em;
+  background-origin: content-box;
+  background-attachment: local;
+  padding: 1.2rem;
+  background: #333;
+  color: rgba(179, 179, 179, 0.9);
+}
 
 
+pre[class*="language-"]>code span{
+  line-height: 2rem;
+}
 
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable {
+  background: none !important;
+}
+.language-css .token.string,
+.style .token.string {
+  background: none !important;
+}
+
+
+::-webkit-scrollbar {display:none}
+
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  border-radius: 0;
+}
 
 #md-content img {
   max-width: 100%;
@@ -27,7 +72,7 @@
 #md-content h4,
 #md-content h5,
 #md-content h6{
-  font-weight: 300;
+  font-weight: 300 !important;
 }
 
 

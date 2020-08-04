@@ -15,9 +15,13 @@ class TagsController extends BaseController
 		
 		$this->view = 'index';
 		
+		$data = $label->article()->orderBy('created_at','DESC')->simplePaginate();
+		
+		$data = dataFormatting($data);
+		
 		$assign = [
 			'title' => '分类',
-			'data' =>$label->article()->orderBy('created_at','DESC')->simplePaginate()
+			'data' =>$data
 		];
 		$this->setAssign( $assign);
 		

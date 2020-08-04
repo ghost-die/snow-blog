@@ -20,6 +20,10 @@ class CategoryController extends BaseController
 		$this->view = 'index';
 		
 		$data = $articleCategory->article()->orderBy('created_at','DESC')->simplePaginate();
+		
+		$data = dataFormatting($data);
+		
+		
 		$assign = [
 			'title' => '分类',
 			'data' =>$data,

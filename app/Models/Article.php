@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Parsedown;
 
 class Article extends Model
@@ -34,7 +35,17 @@ class Article extends Model
 	public function getPaginateData()
 	{
 		
-		return $this->query()->orderBy('created_at','DESC')->simplePaginate();
+		return $this->query()->orderBy('created_at','DESC')->simplePaginate(null,[
+			'id',
+			'category_id',
+			'title',
+			'content',
+			'reads_num',
+			'comments_num',
+			'author',
+			'created_at',
+			'updated_at',
+		]);
 		
 	}
 	
@@ -135,7 +146,7 @@ class Article extends Model
 	
 	public function getCreatedAtAttribute ( $created_at )
 	{
-		return Carbon::parse($created_at)->diffForHumans();
+		return Carbon::parse($created_at)->formatLocalized('%d %B %Y');
 	}
 	
 	
@@ -156,6 +167,8 @@ class Article extends Model
 			return false;
 		}
 	}
+	
+	
 	
 	
 	

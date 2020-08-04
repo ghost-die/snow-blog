@@ -52,8 +52,8 @@ try {
     require('prismjs/components/prism-flow.min')
     require('prismjs/components/prism-factor.min')
 
-    require('prismjs/plugins/line-numbers/prism-line-numbers')
-    require('prismjs/plugins/toolbar/prism-toolbar')
+    // require('prismjs/plugins/line-numbers/prism-line-numbers')
+    // require('prismjs/plugins/toolbar/prism-toolbar')
     require('prismjs/plugins/previewers/prism-previewers')
     require('prismjs/plugins/autoloader/prism-autoloader')
     require('prismjs/plugins/command-line/prism-command-line')

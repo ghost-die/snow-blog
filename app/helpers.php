@@ -2,6 +2,7 @@
 
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 if (! function_exists('randByMicrosecond')) {
 	
@@ -116,5 +117,36 @@ if (! function_exists('notification')){
 		}else{
 			return back()->with($status,$message);
 		}
+	}
+}
+
+
+if (!function_exists('dataFormatting')){
+	function dataFormatting($data)
+	{
+		foreach ($data->items() as &$value)
+		{
+			
+			$content = preg_replace('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', '',$value->content);
+			
+			$content = str_replace ( "\r\n" , "\n" , $content );//防止不兼容
+			$content = explode ( "\n" , $content );
+			$datas = collect($content);
+			$content =  $datas->slice(0,5)->implode("\n");
+			if (Str::contains($content,'<pre>'))
+			{
+				foreach ($datas as $k=>$v)
+				{
+					if (Str::contains($v,'</pre>'))
+					{
+						$content = $datas->slice(0,$k+1)->implode("\n");
+						break;
+					}
+				}
+			}
+			$value->content = $content;
+		}
+		
+		return $data;
 	}
 }

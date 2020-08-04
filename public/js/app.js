@@ -59124,185 +59124,6 @@ Prism.hooks.add('complete', function (env) {
 
 /***/ }),
 
-/***/ "./node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-(function () {
-
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
-		return;
-	}
-
-	/**
-	 * Plugin name which is used as a class name for <pre> which is activating the plugin
-	 * @type {String}
-	 */
-	var PLUGIN_NAME = 'line-numbers';
-
-	/**
-	 * Regular expression used for determining line breaks
-	 * @type {RegExp}
-	 */
-	var NEW_LINE_EXP = /\n(?!$)/g;
-
-	/**
-	 * Resizes line numbers spans according to height of line of code
-	 * @param {Element} element <pre> element
-	 */
-	var _resizeElement = function (element) {
-		var codeStyles = getStyles(element);
-		var whiteSpace = codeStyles['white-space'];
-
-		if (whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line') {
-			var codeElement = element.querySelector('code');
-			var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
-			var lineNumberSizer = element.querySelector('.line-numbers-sizer');
-			var codeLines = codeElement.textContent.split(NEW_LINE_EXP);
-
-			if (!lineNumberSizer) {
-				lineNumberSizer = document.createElement('span');
-				lineNumberSizer.className = 'line-numbers-sizer';
-
-				codeElement.appendChild(lineNumberSizer);
-			}
-
-			lineNumberSizer.style.display = 'block';
-
-			codeLines.forEach(function (line, lineNumber) {
-				lineNumberSizer.textContent = line || '\n';
-				var lineSize = lineNumberSizer.getBoundingClientRect().height;
-				lineNumbersWrapper.children[lineNumber].style.height = lineSize + 'px';
-			});
-
-			lineNumberSizer.textContent = '';
-			lineNumberSizer.style.display = 'none';
-		}
-	};
-
-	/**
-	 * Returns style declarations for the element
-	 * @param {Element} element
-	 */
-	var getStyles = function (element) {
-		if (!element) {
-			return null;
-		}
-
-		return window.getComputedStyle ? getComputedStyle(element) : (element.currentStyle || null);
-	};
-
-	window.addEventListener('resize', function () {
-		Array.prototype.forEach.call(document.querySelectorAll('pre.' + PLUGIN_NAME), _resizeElement);
-	});
-
-	Prism.hooks.add('complete', function (env) {
-		if (!env.code) {
-			return;
-		}
-
-		var code = env.element;
-		var pre = code.parentNode;
-
-		// works only for <code> wrapped inside <pre> (not inline)
-		if (!pre || !/pre/i.test(pre.nodeName)) {
-			return;
-		}
-
-		// Abort if line numbers already exists
-		if (code.querySelector('.line-numbers-rows')) {
-			return;
-		}
-
-		var addLineNumbers = false;
-		var lineNumbersRegex = /(?:^|\s)line-numbers(?:\s|$)/;
-
-		for (var element = code; element; element = element.parentNode) {
-			if (lineNumbersRegex.test(element.className)) {
-				addLineNumbers = true;
-				break;
-			}
-		}
-
-		// only add line numbers if <code> or one of its ancestors has the `line-numbers` class
-		if (!addLineNumbers) {
-			return;
-		}
-
-		// Remove the class 'line-numbers' from the <code>
-		code.className = code.className.replace(lineNumbersRegex, ' ');
-		// Add the class 'line-numbers' to the <pre>
-		if (!lineNumbersRegex.test(pre.className)) {
-			pre.className += ' line-numbers';
-		}
-
-		var match = env.code.match(NEW_LINE_EXP);
-		var linesNum = match ? match.length + 1 : 1;
-		var lineNumbersWrapper;
-
-		var lines = new Array(linesNum + 1).join('<span></span>');
-
-		lineNumbersWrapper = document.createElement('span');
-		lineNumbersWrapper.setAttribute('aria-hidden', 'true');
-		lineNumbersWrapper.className = 'line-numbers-rows';
-		lineNumbersWrapper.innerHTML = lines;
-
-		if (pre.hasAttribute('data-start')) {
-			pre.style.counterReset = 'linenumber ' + (parseInt(pre.getAttribute('data-start'), 10) - 1);
-		}
-
-		env.element.appendChild(lineNumbersWrapper);
-
-		_resizeElement(pre);
-
-		Prism.hooks.run('line-numbers', env);
-	});
-
-	Prism.hooks.add('line-numbers', function (env) {
-		env.plugins = env.plugins || {};
-		env.plugins.lineNumbers = true;
-	});
-
-	/**
-	 * Global exports
-	 */
-	Prism.plugins.lineNumbers = {
-		/**
-		 * Get node for provided line number
-		 * @param {Element} element pre element
-		 * @param {Number} number line number
-		 * @return {Element|undefined}
-		 */
-		getLine: function (element, number) {
-			if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
-				return;
-			}
-
-			var lineNumberRows = element.querySelector('.line-numbers-rows');
-			var lineNumberStart = parseInt(element.getAttribute('data-start'), 10) || 1;
-			var lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
-
-			if (number < lineNumberStart) {
-				number = lineNumberStart;
-			}
-			if (number > lineNumberEnd) {
-				number = lineNumberEnd;
-			}
-
-			var lineIndex = number - lineNumberStart;
-
-			return lineNumberRows.children[lineIndex];
-		}
-	};
-
-}());
-
-
-/***/ }),
-
 /***/ "./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js":
 /*!*****************************************************************************************!*\
   !*** ./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js ***!
@@ -60432,195 +60253,6 @@ Prism.hooks.add('before-sanity-check', function (env) {
 		return element;
 	});
 
-})();
-
-
-/***/ }),
-
-/***/ "./node_modules/prismjs/plugins/toolbar/prism-toolbar.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/prismjs/plugins/toolbar/prism-toolbar.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-(function(){
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
-		return;
-	}
-
-	var callbacks = [];
-	var map = {};
-	var noop = function() {};
-
-	Prism.plugins.toolbar = {};
-
-	/**
-	 * @typedef ButtonOptions
-	 * @property {string} text The text displayed.
-	 * @property {string} [url] The URL of the link which will be created.
-	 * @property {Function} [onClick] The event listener for the `click` event of the created button.
-	 * @property {string} [className] The class attribute to include with element.
-	 */
-
-	/**
-	 * Register a button callback with the toolbar.
-	 *
-	 * @param {string} key
-	 * @param {ButtonOptions|Function} opts
-	 */
-	var registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
-		var callback;
-
-		if (typeof opts === 'function') {
-			callback = opts;
-		} else {
-			callback = function (env) {
-				var element;
-
-				if (typeof opts.onClick === 'function') {
-					element = document.createElement('button');
-					element.type = 'button';
-					element.addEventListener('click', function () {
-						opts.onClick.call(this, env);
-					});
-				} else if (typeof opts.url === 'string') {
-					element = document.createElement('a');
-					element.href = opts.url;
-				} else {
-					element = document.createElement('span');
-				}
-
-				if (opts.className) {
-					element.classList.add(opts.className);
-				}
-
-				element.textContent = opts.text;
-
-				return element;
-			};
-		}
-
-		if (key in map) {
-			console.warn('There is a button with the key "' + key + '" registered already.');
-			return;
-		}
-
-		callbacks.push(map[key] = callback);
-	};
-
-	/**
-	 * Returns the callback order of the given element.
-	 *
-	 * @param {HTMLElement} element
-	 * @returns {string[] | undefined}
-	 */
-	function getOrder(element) {
-		while (element) {
-			var order = element.getAttribute('data-toolbar-order');
-			if (order != null) {
-				order = order.trim();
-				if (order.length) {
-					return order.split(/\s*,\s*/g);
-				} else {
-					return [];
-				}
-			}
-			element = element.parentElement;
-		}
-	}
-
-	/**
-	 * Post-highlight Prism hook callback.
-	 *
-	 * @param env
-	 */
-	var hook = Prism.plugins.toolbar.hook = function (env) {
-		// Check if inline or actual code block (credit to line-numbers plugin)
-		var pre = env.element.parentNode;
-		if (!pre || !/pre/i.test(pre.nodeName)) {
-			return;
-		}
-
-		// Autoloader rehighlights, so only do this once.
-		if (pre.parentNode.classList.contains('code-toolbar')) {
-			return;
-		}
-
-		// Create wrapper for <pre> to prevent scrolling toolbar with content
-		var wrapper = document.createElement('div');
-		wrapper.classList.add('code-toolbar');
-		pre.parentNode.insertBefore(wrapper, pre);
-		wrapper.appendChild(pre);
-
-		// Setup the toolbar
-		var toolbar = document.createElement('div');
-		toolbar.classList.add('toolbar');
-
-		// order callbacks
-		var elementCallbacks = callbacks;
-		var order = getOrder(env.element);
-		if (order) {
-			elementCallbacks = order.map(function (key) {
-				return map[key] || noop;
-			});
-		}
-
-		elementCallbacks.forEach(function(callback) {
-			var element = callback(env);
-
-			if (!element) {
-				return;
-			}
-
-			var item = document.createElement('div');
-			item.classList.add('toolbar-item');
-
-			item.appendChild(element);
-			toolbar.appendChild(item);
-		});
-
-		// Add our toolbar to the currently created wrapper of <pre> tag
-		wrapper.appendChild(toolbar);
-	};
-
-	registerButton('label', function(env) {
-		var pre = env.element.parentNode;
-		if (!pre || !/pre/i.test(pre.nodeName)) {
-			return;
-		}
-
-		if (!pre.hasAttribute('data-label')) {
-			return;
-		}
-
-		var element, template;
-		var text = pre.getAttribute('data-label');
-		try {
-			// Any normal text will blow up this selector.
-			template = document.querySelector('template#' + text);
-		} catch (e) {}
-
-		if (template) {
-			element = template.content;
-		} else {
-			if (pre.hasAttribute('data-url')) {
-				element = document.createElement('a');
-				element.href = pre.getAttribute('data-url');
-			} else {
-				element = document.createElement('span');
-			}
-
-			element.textContent = text;
-		}
-
-		return element;
-	});
-
-	/**
-	 * Register the toolbar with Prism.
-	 */
-	Prism.hooks.add('complete', hook);
 })();
 
 
@@ -66799,19 +66431,42 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-var Markdown = /*#__PURE__*/function () {
+var Markdown = /*#__PURE__*/function (_Markdown) {
+  _inherits(Markdown, _Markdown);
+
+  var _super = _createSuper(Markdown);
+
   function Markdown() {
+    var _this2;
+
     _classCallCheck(this, Markdown);
 
-    this.setting = {
+    _this2 = _super.call(this);
+    _this2.setting = {
       'textarea': {
         'id': 'markdown'
       },
@@ -66928,6 +66583,7 @@ var Markdown = /*#__PURE__*/function () {
         change: function change() {}
       }
     };
+    return _this2;
   }
 
   _createClass(Markdown, [{
@@ -67005,7 +66661,7 @@ var Markdown = /*#__PURE__*/function () {
   }]);
 
   return Markdown;
-}();
+}(Markdown);
 
 console.log(Config);
 window.markdown = new Markdown();
@@ -67367,11 +67023,9 @@ try {
 
   __webpack_require__(/*! prismjs/components/prism-flow.min */ "./node_modules/prismjs/components/prism-flow.min.js");
 
-  __webpack_require__(/*! prismjs/components/prism-factor.min */ "./node_modules/prismjs/components/prism-factor.min.js");
+  __webpack_require__(/*! prismjs/components/prism-factor.min */ "./node_modules/prismjs/components/prism-factor.min.js"); // require('prismjs/plugins/line-numbers/prism-line-numbers')
+  // require('prismjs/plugins/toolbar/prism-toolbar')
 
-  __webpack_require__(/*! prismjs/plugins/line-numbers/prism-line-numbers */ "./node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js");
-
-  __webpack_require__(/*! prismjs/plugins/toolbar/prism-toolbar */ "./node_modules/prismjs/plugins/toolbar/prism-toolbar.js");
 
   __webpack_require__(/*! prismjs/plugins/previewers/prism-previewers */ "./node_modules/prismjs/plugins/previewers/prism-previewers.js");
 
