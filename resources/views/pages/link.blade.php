@@ -66,7 +66,7 @@
 </body>
 <style>
     .link-body{
-        padding: 1rem 5rem;
+        padding: 1rem 1rem;
         height: 75px;
         border: 1px solid #dddddd;
         background: #fafafa;
@@ -89,7 +89,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         line-height: 40px;
-        width: 470px;
+        width: 80%;
 
     }
 </style>
