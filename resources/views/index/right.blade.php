@@ -1,7 +1,7 @@
-<div class="col-lg-4 col-xl-4  " >
+<div class="col-lg-4 col-xl-4" >
 
 
-    <div class="card rounded-0 border-0" >
+    <div class="card rounded-0" >
         <div class="card-body ">
             <form action="{{ route('search.index') }}">
                 <div class="input-group">
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="card mt-3 rounded-0 border-0" style="">
+    <div class="card mt-3 rounded-0" style="">
         <div class="card-body">
             <h5 class="font-weight-light px-4 py-2">推荐</h5>
             <ul class="list-group pl-4">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="card mt-3 rounded-0 border-0">
+    <div class="card mt-3 rounded-0">
         <div class="card-body">
             <h5 class="font-weight-light px-4 py-2">标签</h5>
             <div class="pl-4">
@@ -41,7 +41,7 @@
     </div>
 
 
-    <div class="card mt-3  rounded-0 border-0">
+    <div class="card mt-3  rounded-0">
         <div class="card-body">
             <h5 class="font-weight-light px-4 py-2">友链 <a class="btn btn-sm btn-link" data-toggle="modal" data-target="#addLinkModal"><i class="ri-add-line"></i></a></h5>
             <ul class="list-group pl-4">
@@ -72,7 +72,7 @@
 <div class="modal fade" id="addLinkModal" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
         <div class="modal-content rounded-0">
-            <div class="modal-header border-left-0 border-right-0 border-top-0">
+            <div class="modal-header border-0">
                 <h5 class="modal-title font-weight-normal w-100 text-center" id="addLinkModal">互换友链</h5>
                 <button type="button" class="close font-weight-normal" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -82,17 +82,17 @@
                 <form action="{{ route('add.link') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="name" class="col-form-label">站点名称 <span class="text-danger">*</span>:</label>
+                        <label for="name" class="col-form-label">站点名称 <span class="text-dark">*</span>:</label>
                         <input type="text" name="name" class="form-control rounded-0 border-dark" required placeholder="" id="name">
                     </div>
 
                     <div class="form-group">
-                        <label for="uri" class="col-form-label">站点地址 <span class="text-danger">*</span>:</label>
+                        <label for="uri" class="col-form-label">站点地址 *<span class="text-dark"></span>:</label>
                         <input type="url" name="uri" class="form-control rounded-0 border-dark" required placeholder="" id="uri">
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="col-form-label">邮箱地址 <span class="text-danger">*</span>:</label>
+                        <label for="email" class="col-form-label">邮箱地址 <span class="text-dark">*</span>:</label>
                         <input type="email" name="email" class="form-control rounded-0 border-dark" required placeholder="" id="email">
                     </div>
 

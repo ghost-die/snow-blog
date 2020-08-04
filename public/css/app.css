@@ -14114,22 +14114,19 @@ button.toast-close-button {
 
 /* Code blocks */
 
-pre[class*=language-] {
-  border-radius: 0;
-}
-
 #md-content p {
   font-weight: 300 !important;
 }
 
+code[class*=language-],
 pre[class*=language-] {
-  font-family: sans-serif;
+  border-radius: 0;
 }
 
 pre[class*=language-] > code {
   position: relative;
   border-left: 10px solid #c9c9c9;
-  box-shadow: -1px 0 0 0 #c9c9c9, 0 0 0 1px #dfdfdf;
+  box-shadow: none !important;
   background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
   background-size: 3em 3em;
   background-origin: content-box;
@@ -14141,7 +14138,7 @@ pre[class*=language-] > code {
 }
 
 pre[class*=language-] > code span {
-  line-height: 2rem;
+  line-height: 1.1em;
 }
 
 .token.operator,
@@ -14272,8 +14269,11 @@ pre[class*=language-] > code span {
   }
 }
 
+html,
 body {
-  font-family: font-regular, "Helvetica Neue", sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-weight: 200;
+  margin: 0;
 }
 
 .site-header {
@@ -14399,6 +14399,7 @@ a:hover {
 
 .header {
   padding: 8rem;
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .site-title a {

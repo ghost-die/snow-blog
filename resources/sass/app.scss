@@ -26,8 +26,15 @@
 
 @import "./lib/snow";
 
-body {
-  font-family: font-regular,'Helvetica Neue',sans-serif;
+//body {
+//  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace sans-serif;
+//}
+
+html, body {
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  margin: 0;
 }
 
 .site-header {
@@ -151,6 +158,7 @@ a:hover {
 
 .header{
   padding: 8rem;
+  border-bottom: 1px solid #e3e3e3;
 }
 .site-title a{
   font-size: 2.5rem;

@@ -11,7 +11,7 @@
         <div class="row justify-content-around">
 
 
-            <div class="col-lg-8 col-xl-8 " id="content">
+            <div class="col-lg-8 col-xl-8" id="content">
                 <div class="card rounded-0 p-4" >
                     <div class="card-body">
                         <h3 class="card-title font-weight-normal clearfix">
@@ -36,7 +36,7 @@
 
 
 
-                <div class="card mt-3 mb-3">
+                <div class="card mt-3 mb-3 rounded-0">
                     <div class="card-body pl-5">
                         {{ $data->comment->count() }}条评论
                     </div>
@@ -44,7 +44,7 @@
 
                 @include('article._item',['comments'=>$comments])
 
-                <div class="card mt-3 Post-Comment">
+                <div class="card mt-3 rounded-0 Post-Comment">
                     <div class="card-body p-5 comment">
 
                         <p>发表评论</p>
@@ -75,8 +75,8 @@
                                        id="web_site" name="web_site" placeholder="https://" value="{{ old('web_site') ?? $comment_data['web_site'] }}" autocomplete="off" >
                             </div>
 
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" value="1" name="is_remember" id="is_remember">
+                            <div class="form-group form-check rounded-0">
+                                <input type="checkbox" class="form-check-input rounded-0" value="1" name="is_remember" id="is_remember">
                                 <label class="form-check-label" for="is_remember">在当前浏览器记住昵称和邮箱和主页，自动填充</label>
                             </div>
 
