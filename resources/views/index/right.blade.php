@@ -18,7 +18,7 @@
             <ul class="list-group pl-4">
                 @foreach($top as $item)
                     <li class="overflow_hidden" style="text-overflow:ellipsis;white-space: nowrap;list-style-position:inside">
-                        <a class="text-decoration-none" href="{{ route('article.index',['article'=>$item['id']]) }}">
+                        <a class="text-decoration-none recommend" title="{{ $item['title'] }}" href="{{ route('article.index',['article'=>$item['id']]) }}">
                             {{ $item['title'] }}
                         </a>
                     </li>
