@@ -17,9 +17,15 @@
                         <h3 class="card-title font-weight-normal clearfix">
                             {{ $data->title }}
                         </h3>
-                        <p class="card-text font-weight-light mt-1" style="font-size: 12px"><small class="text-muted">{{ $data->created_at }}</small></p>
+                        <p class="card-text font-weight-light mt-1" style="font-size: 12px">
+                            <small class="text-muted">
+                                <span>Published on </span>
+                                <span>{{ $data->created_at }}</span>
+                                <span> By. {{ $data->author }}</span>
+                            </small>
+                        </p>
                         <ul class="text-muted font-weight-light" style="margin-left: -1.5rem">
-                            <li>本文地址：<a>{{ url()->full()}}</a></li>
+                            <li>本文地址：<a href="{{ url()->full()}}">{{ url()->full()}}</a></li>
                             <li>转载请注明出处</li>
                         </ul>
                         <div class="card-text " id="md-content">
