@@ -11,7 +11,7 @@
         <div class="row justify-content-around">
 
 
-            <div class="col-sm-8 " id="content">
+            <div class="col-lg-8 col-xl-8 " id="content">
                 <div class="card rounded-0 p-4" >
                     <div class="card-body">
                         <h3 class="card-title font-weight-normal clearfix">

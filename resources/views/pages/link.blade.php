@@ -43,20 +43,18 @@
 
             <div class="row justify-content-around">
 
-                <div class="col-md-8">
-                    <div class="card rounded-0">
-                        <div class="card-header text-center border-0">
-                            <h3 class="mt-2 font-weight-normal" style="">即将跳转到外部网站</h3>
-                            <h5 class="text-black-50 font-weight-light">安全性未知，是否继续</h5>
+                <div class="card rounded-0">
+                    <div class="card-header text-center border-0">
+                        <h3 class="mt-2 font-weight-normal" style="">即将跳转到外部网站</h3>
+                        <h5 class="text-black-50 font-weight-light">安全性未知，是否继续</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="link-body">
+                            <div class="text-white link-icon float-left"><i class="ri-links-line"></i></div>
+                            <div class="link-url float-left"><a target="_blank" title="{{$link}}"  href="{{$link}}">{{$link}}</a></div>
                         </div>
 
-                        <div class="card-body">
-                            <div class="link-body">
-                                <div class="text-white link-icon float-left"><i class="ri-links-line"></i></div>
-                                <div class="link-url float-left"><a target="_blank" title="{{$link}}"  href="{{$link}}">{{$link}}</a></div>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>

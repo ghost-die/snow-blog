@@ -1,4 +1,6 @@
-<div class="col-sm-4" >
+<div class="col-lg-4 col-xl-4  " >
+
+
     <div class="card rounded-0 border-0" >
         <div class="card-body ">
             <form action="{{ route('search.index') }}">
@@ -59,9 +61,9 @@
     <div class="card mt-3  rounded-0"  >
         <div class="card-body" >
             <h5 class="font-weight-light px-4 py-2">访客</h5>
-            <a href="https://clustrmaps.com/site/1b21z" title="Visit tracker">
-                <img src="//clustrmaps.com/map_v2.png?cl=000000&w=300&t=n&d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&co=ffffff&ct=ffffff" />
-            </a>
+                <a href="https://clustrmaps.com/site/1b21z" title="Visit tracker">
+                    <img style="width: 100%" src="//clustrmaps.com/map_v2.png?cl=000000&w=300&t=n&d=1GdU19QCiEmlTiMD8IRvmoUlgVTViQnqXNDs0m7KDwk&co=ffffff&ct=ffffff" />
+                </a>
         </div>
     </div>
 

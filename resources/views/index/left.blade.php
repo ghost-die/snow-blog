@@ -1,4 +1,4 @@
-<div class="col-sm-8">
+<div class="col-lg-8 col-xl-8   ">
     @foreach($data as $v)
     <div class="card mb-3 rounded-0 p-4" >
         <div class="card-body">
