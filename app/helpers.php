@@ -144,6 +144,23 @@ if (!function_exists('dataFormatting')){
 					}
 				}
 			}
+			
+			$content = preg_replace('/<blockquote>/','',$content);
+			$content = preg_replace('/<\/blockquote>/','',$content);
+			
+//			if (Str::contains($content,'<blockquote>'))
+//			{
+//				foreach ($datas as $k=>$v)
+//				{
+//					if (Str::contains($v,'</blockquote>'))
+//					{
+//						$content = $datas->slice(0,$k+1)->implode("\n");
+//						break;
+//					}
+//				}
+//			}
+//
+//			blockquote
 			$value->content = $content;
 		}
 		

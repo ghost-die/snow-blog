@@ -29,6 +29,7 @@ class IndexController extends BaseController
 			'data' =>$data
 		];
 		
+		debug($data);
 		$this->setAssign( $assign);
 		
 		return $this->response();
