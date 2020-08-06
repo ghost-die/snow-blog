@@ -15,7 +15,7 @@
         <atom:link href="{{ route('feed') }}" rel="self" type="application/rss+xml"/>
 
 
-        <lastBuildDate>{{ !empty($data) ? $data[0]->updated_at->toRfc822String() : \Carbon\Carbon::now()->toRfc822String() }}</lastBuildDate>
+        <lastBuildDate> {{ !empty($data) ? $data[0]->updated_at->toRfc2822String() : \Carbon\Carbon::now()->toRfc2822String() }} </lastBuildDate>
 
         <language>{{ str_replace('_', '-', app()->getLocale()) }}</language>
 
@@ -31,7 +31,7 @@
                 <title>{{ $article->title }}</title>
                 <link>{{ route('article.index',['article'=>$article->id]) }}</link>
                 <description>{{ $article->content }}</description>
-                <pubDate>{{ \Illuminate\Support\Carbon::parse( $article->getRawOriginal('created_at'))->toRfc822String() }}</pubDate>
+                <pubDate>{{ \Illuminate\Support\Carbon::parse( $article->getRawOriginal('created_at'))->toRfc2822String() }}</pubDate>
 
                 <author>{{ $article->user->email }} ({{$article->user->name}})</author>
 
