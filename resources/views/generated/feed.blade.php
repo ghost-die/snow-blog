@@ -30,7 +30,7 @@
             <item>
                 <title>{{ $article->title }}</title>
                 <link>{{ route('article.index',['article'=>$article->id]) }}</link>
-                <description>{!! $article->content !!}</description>
+                <description>{{ $article->content }}</description>
                 <pubDate>{{ \Illuminate\Support\Carbon::parse( $article->getRawOriginal('created_at'))->toRfc822String() }}</pubDate>
 
                 <author>{{ $article->user->email }} ({{$article->user->name}})</author>
