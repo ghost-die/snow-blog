@@ -1,8 +1,6 @@
 <div class="col-lg-4 col-xl-4" >
-
-
-    <div class="card rounded-0" >
-        <div class="card-body ">
+    <div class="card rounded-0">
+        <div class="card-body">
             <form action="{{ route('search.index') }}">
                 <div class="input-group">
                     <input type="text"  placeholder="Search" name="search" class="form-control font-weight-light border-right-0 border-dark rounded-0" id="validationTooltipSearch" aria-describedby="validationTooltipSearchPrepend">
@@ -58,7 +56,7 @@
     </div>
 
 
-    <div class="card mt-3  rounded-0"  >
+    <div class="card mt-3 rounded-0">
         <div class="card-body" >
             <h5 class="font-weight-light px-4 py-2">访客</h5>
                 <a href="https://clustrmaps.com/site/1b21z" title="Visit tracker">

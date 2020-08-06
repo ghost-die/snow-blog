@@ -1,4 +1,4 @@
-<div class="col-lg-8 col-xl-8   ">
+<div class="col-lg-8 col-xl-8">
     @foreach($data as $v)
     <div class="card mb-3 rounded-0 p-4" >
         <div class="card-body">
@@ -28,19 +28,3 @@
     @endforeach
     {{ $data->links() }}
 </div>
-
-<style>
-
-    /*.text:first-letter{*/
-    /*    margin-left: 2em;*/
-    /*}*/
-
-    /*.bd-placeholder-img {*/
-    /*    cursor: pointer;*/
-    /*    transition: all 0.9s;*/
-    /*}*/
-    /*.bd-placeholder-img:hover{*/
-    /*    transform: scale(1.18);*/
-    /*}*/
-
-</style>

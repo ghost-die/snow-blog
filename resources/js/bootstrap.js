@@ -7,24 +7,8 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-
-    SimpleMDE = require('simplemde');
-
-    require('./lib/codemirror');
-
-    require('inline-attachment/src/inline-attachment');
-    require('inline-attachment/src/codemirror-4.inline-attachment');
-    require('cropperjs');
-    require('jquery-cropper');
     require('bootstrap');
-
-    require('select2/dist/js/select2.min');
-
-    // require('bootstrap-iconpicker-latest/dist/js/bootstrap-iconpicker.min');
-    window.swal = require('sweetalert/dist/sweetalert.min');
-
     require('./lib/toastr');
 
     require('prismjs/prism')
@@ -54,14 +38,14 @@ try {
 
     // require('prismjs/plugins/line-numbers/prism-line-numbers')
     // require('prismjs/plugins/toolbar/prism-toolbar')
-    require('prismjs/plugins/previewers/prism-previewers')
-    require('prismjs/plugins/autoloader/prism-autoloader')
-    require('prismjs/plugins/command-line/prism-command-line')
-    require('prismjs/plugins/normalize-whitespace/prism-normalize-whitespace')
-    require('prismjs/plugins/keep-markup/prism-keep-markup')
-    require('prismjs/plugins/show-language/prism-show-language')
-    require('prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard')
-    require('prismjs/plugins/treeview/prism-treeview.min')
+    // require('prismjs/plugins/previewers/prism-previewers')
+    // require('prismjs/plugins/autoloader/prism-autoloader')
+    // require('prismjs/plugins/command-line/prism-command-line')
+    // require('prismjs/plugins/normalize-whitespace/prism-normalize-whitespace')
+    // require('prismjs/plugins/keep-markup/prism-keep-markup')
+    // require('prismjs/plugins/show-language/prism-show-language')
+    // require('prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard')
+    // require('prismjs/plugins/treeview/prism-treeview.min')
 
 
 } catch (e) {}
@@ -73,7 +57,7 @@ try {
  */
 
 
-require('./lib/http-service');
+// require('./lib/http-service');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

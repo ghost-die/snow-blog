@@ -12,23 +12,11 @@
 
 @import "~remixicon/fonts/remixicon.css";
 
-// simplemde
-@import "~simplemde/dist/simplemde.min.css";
-
-// cropper
-@import "~cropperjs/dist/cropper.min.css";
-
-@import "~select2/dist/css/select2.min.css";
-
 @import "~toastr";
 
 @import "./lib/markdown";
 
 @import "./lib/snow";
-
-//body {
-//  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace sans-serif;
-//}
 
 html, body {
 
@@ -60,43 +48,7 @@ html, body {
   text-indent:2em;
 
 }
-#md-content table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  display: block;
-  width: 100%;
-  overflow: auto;
 
-  word-break: keep-all;
-}
-
-
-#md-content table thead tr, #md-content table thead tr {
-  background-color: #F8F8F8;
-}
-#md-content table tr {
-  background-color: #fff;
-  border-top: 1px solid #ccc;
-}
-#md-content * {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-#md-content table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-
-
-#md-content blockquote, #md-content dl, #md-content ol, #md-content p, #md-content pre, #md-content table, #md-content ul {
-  margin-top: 0;
-  margin-bottom: 16px;
-}
-
-#md-content table td, #md-content table th {
-  padding: 6px 13px;
-  border: 1px solid #ddd;
-}
 
 .overflow_hidden{
   overflow:hidden;

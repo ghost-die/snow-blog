@@ -58,14 +58,14 @@
                                 <textarea style="min-height: 160px" class="form-control rounded-0  @error('content') is-invalid @else border-dark @enderror" id="content" name="content" required  autocomplete="off" >{{ old('content') }}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="name">昵称*</label>
+                                <label for="comment-name">昵称*</label>
                                 <input type="text" class="form-control rounded-0  @error('name') is-invalid @else border-dark @enderror"
-                                       id="name" name="name" placeholder="Ghost" required value="{{ old('name') ??   $comment_data['name'] }}" autocomplete="off" >
+                                       id="comment-name" name="name" placeholder="Ghost" required value="{{ old('name') ??   $comment_data['name'] }}" autocomplete="off" >
                             </div>
 
                             <div class="form-group">
-                                <label for="email">邮箱*</label>
-                                <input type="email" class="form-control rounded-0  @error('email') is-invalid @else border-dark @enderror" id="email" name="email"
+                                <label for="comment-email">邮箱*</label>
+                                <input type="email" class="form-control rounded-0  @error('email') is-invalid @else border-dark @enderror" id="comment-email" name="email"
                                        placeholder="name@email.com" required value="{{ old('email') ?? $comment_data['email']  }}" autocomplete="off" >
                             </div>
 
@@ -101,7 +101,7 @@
 @endsection
 
 
-@section('js')
+@push('scripts')
 
 
     <script>
@@ -127,4 +127,4 @@
     </script>
 
 
-@endsection
+@endpush

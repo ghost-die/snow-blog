@@ -15,23 +15,43 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        .link-body{
+            padding: 1rem 1rem;
+            height: 75px;
+            border: 1px solid #dddddd;
+            background: #fafafa;
+        }
+        .link-icon{
+
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            background: #bcc6d8;
+            text-align: center;
+            border-radius: 2px;
+        }
+        .link-url{
+            font-size: 14px;
+            color: #3194d0;
+            margin-left: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 40px;
+            width: 80%;
+
+        }
+    </style>
 </head>
-<script>
 
-</script>
-<style>
 
-</style>
+
 <body style="background: #eaeaec">
 
-<div class="snow-container">
-    <div class="snow foreground"></div>
-    <div class="snow foreground layered"></div>
-    <div class="snow middleground"></div>
-    <div class="snow middleground layered"></div>
-    <div class="snow background"></div>
-    <div class="snow background layered"></div>
-</div>
+@include('layouts.snow')
 
 <div id="app">
 
@@ -62,45 +82,17 @@
     </main>
 </div>
 </body>
-<style>
-    .link-body{
-        padding: 1rem 1rem;
-        height: 75px;
-        border: 1px solid #dddddd;
-        background: #fafafa;
-    }
-    .link-icon{
 
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        font-size: 20px;
-        background: #bcc6d8;
-        text-align: center;
-        border-radius: 2px;
-    }
-    .link-url{
-        font-size: 14px;
-        color: #3194d0;
-        margin-left: 10px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        line-height: 40px;
-        width: 80%;
 
-    }
-</style>
-
-<script>
-    window.Config = {
-        'token': "{{ csrf_token() }}",
-        'auth': "{{ \Illuminate\Support\Facades\Auth::check() }}",
-        'routes': {
-            'upload_md_image': "{{ route('upload_md_image') }}",
-        }
-    };
-</script>
+{{--<script>--}}
+{{--    window.Config = {--}}
+{{--        'token': "{{ csrf_token() }}",--}}
+{{--        'auth': "{{ \Illuminate\Support\Facades\Auth::check() }}",--}}
+{{--        'routes': {--}}
+{{--            'upload_md_image': "{{ route('upload_md_image') }}",--}}
+{{--        }--}}
+{{--    };--}}
+{{--</script>--}}
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

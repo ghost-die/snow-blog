@@ -18,20 +18,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<style>
+@stack('css')
 
-</style>
 <body style="background: #eaeaec">
 
-<div class="snow-container">
-    <div class="snow foreground"></div>
-    <div class="snow foreground layered"></div>
-    <div class="snow middleground"></div>
-    <div class="snow middleground layered"></div>
-    <div class="snow background"></div>
-    <div class="snow background layered"></div>
-</div>
-
+@include('layouts.snow')
     <div id="app">
 
         @include('layouts.header')
@@ -49,62 +40,11 @@
     </div>
 </body>
 
-
-<script>
-    window.Config = {
-        'token': "{{ csrf_token() }}",
-        'auth': "{{ \Illuminate\Support\Facades\Auth::check() }}",
-        'routes': {
-            'upload_md_image': "{{ route('upload_md_image') }}",
-        }
-    };
-</script>
-
 <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 
+@stack('scripts')
 
-    @yield('js')
-    @yield('script')
-
-
-    <script>
-
-
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-
-                toastr.error("{{ $error }}");
-            @endforeach
-        @endif
-
-        @if (session('success'))
-            toastr.success("{{ session('success') }}");
-        @endif
-
-        @if (session('error'))
-            toastr.error("{{ session('error') }}");
-        @endif
-
-
-    </script>
-
-<script>
-
-
-    $("#md-content").find('a').each(function () {
-        let href = $(this).attr('href');
-        console.log(href);
-        if(href !==undefined)
-        {
-            if (href.indexOf("{{ config('app.url') }}") === -1) {
-                $(this).attr('href', "/go-wild?url="+ encodeURIComponent(href));
-            }
-        }
-
-    });
-
-</script>
-
+@include('layouts.notifications.index')
 </html>
