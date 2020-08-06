@@ -17,12 +17,8 @@ class GeneratedController extends BaseController
 		
 		$data = Cache::remember('Article.feed',3600,function (){
 			
-			$data = Article::all();
+			return Article::all();
 			
-			
-			$data = dataFormatting($data);
-			
-			return $data;
 		});
 		
 		
