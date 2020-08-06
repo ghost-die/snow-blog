@@ -13,7 +13,7 @@
 
             <div class="col-lg-8 col-xl-8" id="content">
                 <div class="card rounded-0 p-4" >
-                    <div class="card-body">
+                    <div class="card-body" id="copy-content">
                         <h3 class="card-title font-weight-normal clearfix">
                             {{ $data->title }}
                         </h3>
@@ -28,7 +28,7 @@
                             <li>本文地址：<a href="{{ url()->full()}}">{{ url()->full()}}</a></li>
                             <li>转载请注明出处</li>
                         </ul>
-                        <div class="card-text " id="md-content">
+                        <div class="card-text md-content" id="md-content">
                             {!! $data->content !!}
                         </div>
                     </div>
@@ -105,24 +105,18 @@
 
 
     <script>
+        Ghost.comment();
 
-        let $content = $('#content')
-        let $postComment = $content.find('.Post-Comment');
-        let res=null
-        let commentId;
-        let url = $postComment.find('form').attr('action');
-        $content.on('click','.Reply',function () {
-            let $cardBody = $(this).parents('.card-body');
-            commentId = $(this).data('id');
-            $postComment.find('form').attr('action',url + '/' + commentId)
-            $postComment.remove();
-            if(res !==null){
-                res.find('.comment').remove()
+        let contents = document.getElementById("copy-content");
+
+        let copyData = {
+                author  : "{{ $data->author }}",
+                email   : "ghost@ghost-ai.com",
+                url     : "{{ url()->full()}}"
             }
-            res = $cardBody.append($postComment.html())
-        })
-
-
+        contents.addEventListener('copy',function(e){
+            Ghost.setClipboardText(e,copyData);
+        });
 
     </script>
 

@@ -38673,6 +38673,12 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 $("#md-content a").each(function () {
@@ -38685,6 +38691,57 @@ $("#md-content a").each(function () {
   }
 });
 $('[data-toggle="tooltip"]').tooltip();
+
+var Ghost = /*#__PURE__*/function () {
+  function Ghost() {
+    _classCallCheck(this, Ghost);
+  }
+
+  _createClass(Ghost, [{
+    key: "setClipboardText",
+    value: function setClipboardText(event, copyData) {
+      var clipboardData = event.clipboardData || window.clipboardData;
+
+      if (!clipboardData) {
+        return;
+      }
+
+      event.preventDefault();
+      var text = window.getSelection().toString();
+
+      if (text) {
+        event.preventDefault();
+        var copyright = '\n\n' + '\n著作权归作者所有。' + '\n商业转载请联系作者获得授权，非商业转载请注明出处。' + '\n作者: ' + copyData.author + '\n邮箱: ' + copyData.email + '\n原文地址: ' + copyData.url;
+        clipboardData.setData('text/plain', text + copyright);
+      }
+    }
+  }, {
+    key: "comment",
+    value: function comment() {
+      var $content = $('#content');
+      var $postComment = $content.find('.Post-Comment');
+      var res = null;
+      var commentId;
+      var url = $postComment.find('form').attr('action');
+      $content.on('click', '.Reply', function () {
+        var $cardBody = $(this).parents('.card-body');
+        commentId = $(this).data('id');
+        $postComment.find('form').attr('action', url + '/' + commentId);
+        $postComment.remove();
+
+        if (res !== null) {
+          res.find('.comment').remove();
+        }
+
+        res = $cardBody.append($postComment.html());
+      });
+    }
+  }]);
+
+  return Ghost;
+}();
+
+window.Ghost = new Ghost();
 
 /***/ }),
 

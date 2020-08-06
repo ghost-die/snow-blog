@@ -43,7 +43,6 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 
-
 @stack('scripts')
 
 @include('layouts.notifications.index')
