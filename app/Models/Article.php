@@ -34,6 +34,12 @@ class Article extends Model
 	
 	public function getPaginateData()
 	{
+//		$page = request('page');
+//
+//		return Cache::remember('article'.$page, 60, function () {
+//
+//		});
+//
 		
 		return $this->query()->orderBy('created_at','DESC')->simplePaginate(null,[
 			'id',
@@ -46,6 +52,8 @@ class Article extends Model
 			'created_at',
 			'updated_at',
 		]);
+		
+		
 		
 	}
 	

@@ -63,7 +63,7 @@
     <script src="{{ asset('assets') }}/js/core/bootstrap-material-design.min.js"></script>
 {{--    <script src="https://unpkg.com/default-passive-events"></script>--}}
 
-    <script src="{{ asset('assets') }}/js/plugins/index.umd.js"></script>
+{{--    <script src="{{ asset('assets') }}/js/plugins/index.umd.js"></script>--}}
 
 
     <script src="{{ asset('assets') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>

@@ -107,3 +107,18 @@
     z-index: 1040;
     border: 1px solid #31384c;
 }
+
+.editor-toolbar i.separator
+{
+    border-left: 1px solid #8b939f;
+    border-right: 1px solid #8b939f;
+}
+.editor-toolbar a {
+    color: #8b939f !important;
+}
+
+.editor-preview pre, .editor-preview-side pre {
+    background: #eee;
+    margin-bottom: 10px;
+    padding: 2em;
+}
