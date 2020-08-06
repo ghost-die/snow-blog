@@ -41,7 +41,12 @@
 
     <div class="card mt-3  rounded-0">
         <div class="card-body">
-            <h5 class="font-weight-light px-4 py-2">友链 <a class="btn btn-sm btn-link" data-toggle="modal" data-target="#addLinkModal"><i class="ri-add-line"></i></a></h5>
+            <h5 class="font-weight-light px-4 py-2">
+                友链
+                <a class="btn btn-sm" data-toggle="modal" data-target="#addLinkModal">
+                    <i class="ri-add-line"></i>
+                </a>
+            </h5>
             <ul class="list-group pl-4">
                 @foreach($rightlink as $link)
                     <li class="overflow_hidden" style="text-overflow:ellipsis;white-space: nowrap;list-style-position:inside">
