@@ -17,7 +17,7 @@ class TagsController extends BaseController
 		
 		$data = $label->article()->orderBy('created_at','DESC')->simplePaginate();
 		
-		$data = dataFormatting($data->items());
+		$data = dataFormatting($data);
 		
 		$assign = [
 			'title' => '分类',

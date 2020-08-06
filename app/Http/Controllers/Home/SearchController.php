@@ -25,7 +25,7 @@ class SearchController extends BaseController
 			->simplePaginate();
 		
 		
-		$data = dataFormatting($data->items());
+		$data = dataFormatting($data);
 		
 		
 		

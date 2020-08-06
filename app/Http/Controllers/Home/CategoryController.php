@@ -21,7 +21,7 @@ class CategoryController extends BaseController
 		
 		$data = $articleCategory->article()->orderBy('created_at','DESC')->simplePaginate();
 		
-		$data = dataFormatting($data->items());
+		$data = dataFormatting($data);
 		
 		
 		$assign = [

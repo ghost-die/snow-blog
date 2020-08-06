@@ -22,7 +22,7 @@ class IndexController extends BaseController
 		
 		$data = $article->getPaginateData();
 		
-		$data = dataFormatting($data->items());
+		$data = dataFormatting($data);
 		
 		$assign = [
 			'title' => '首页',
