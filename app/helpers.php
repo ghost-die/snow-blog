@@ -124,7 +124,7 @@ if (! function_exists('notification')){
 if (!function_exists('dataFormatting')){
 	function dataFormatting($data)
 	{
-		foreach ($data->items() as &$value)
+		foreach ($data as &$value)
 		{
 			
 			$content = preg_replace('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', '',$value->content);

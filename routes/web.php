@@ -53,6 +53,8 @@ Route::namespace('Home')->group(function(Routes $route){
 	
 	$route->post('/add-link', 'LinkController@store')->name('add.link');
 	
+	$route->get('feed', 'GeneratedController@feed')->name('feed');
+	
 });
 
 Route::group(['middleware' => 'auth'], function () {
