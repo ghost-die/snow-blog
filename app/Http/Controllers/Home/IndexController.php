@@ -25,7 +25,6 @@ class IndexController extends BaseController
 		$data = dataFormatting($data);
 		
 		$assign = [
-			'title' => '首页',
 			'data' =>$data
 		];
 		

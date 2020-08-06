@@ -11,7 +11,7 @@
     <meta name="description" content="{{ $description ?? '一人，一剑，守一座孤城，等你归来' }}" />
 
 
-    <title>{{ config('app.name', 'Laravel') }} - {{$title ?? ""}}</title>
+    <title> {{$title ?? config('app.name', 'Laravel')}}</title>
     <link rel="alternate" type="application/rss+xml" title="{{ config('app.name', 'Laravel') }} » Feed" href="{{ route('feed') }}">
 
 
