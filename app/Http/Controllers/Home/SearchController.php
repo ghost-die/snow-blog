@@ -29,7 +29,7 @@ class SearchController extends BaseController
 		
 		
 		
-		$this->view = 'index';
+		$this->view = 'index.index';
 		
 		$assign = [
 			'title' => '分类',

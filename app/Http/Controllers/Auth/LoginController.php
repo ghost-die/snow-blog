@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Lib\Layout\Content;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
@@ -51,5 +53,17 @@ class LoginController extends Controller
 			return notification('1','login',$this->redirectTo);
 		}
 		
+	}
+	
+	/**
+	 * Show the application's login form.
+	 *
+	 * @param Content $content
+	 * @return Content
+	 */
+	public function showLoginForm(Content $content)
+	{
+		config()->set('ghost.class','hold-transition login-page');
+		return $content->title('login')->view('auth.login');
 	}
 }

@@ -17,7 +17,7 @@ class CategoryController extends BaseController
 	{
 		
 		
-		$this->view = 'index';
+		$this->view = 'index.index';
 		
 		$data = $articleCategory->article()->orderBy('created_at','DESC')->simplePaginate();
 		

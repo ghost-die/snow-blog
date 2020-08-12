@@ -9,9 +9,9 @@
         <div class="row justify-content-around">
 
 
-            @include('index.left')
+            @include('layouts.left')
 
-            @include('index.right')
+            @include('layouts.right')
 
         </div>
     </div>

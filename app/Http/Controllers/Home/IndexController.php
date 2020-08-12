@@ -18,7 +18,7 @@ class IndexController extends BaseController
 	{
 		
 		
-		$this->view = 'index';
+		$this->view = 'index.index';
 		
 		$data = $article->getPaginateData();
 		

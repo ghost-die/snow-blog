@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-            @include('index.right')
+            @include('layouts.right')
         </div>
     </div>
 

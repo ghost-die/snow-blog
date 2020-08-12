@@ -5,6 +5,8 @@ $("#md-content a").each(function () {
     {
         if (href.indexOf("{{ config('app.url') }}") === -1) {
             $(this).attr('href', "/go-wild?url="+ encodeURIComponent(href));
+
+            $(this).attr('target', '_blank');
         }
     }
 });

@@ -50,7 +50,7 @@
             <ul class="list-group pl-4">
                 @foreach($rightlink as $link)
                     <li class="overflow_hidden" style="text-overflow:ellipsis;white-space: nowrap;list-style-position:inside">
-                        <a class="text-decoration-none" href="{{ $link['uri'] }}">
+                        <a class="text-decoration-none" target="_blank" href="{{ $link['uri'] }}">
                             {{ $link['name'] }}
                         </a>
                     </li>

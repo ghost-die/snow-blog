@@ -13,7 +13,7 @@ class TagsController extends BaseController
 	{
 		
 		
-		$this->view = 'index';
+		$this->view = 'index.index';
 		
 		$data = $label->article()->orderBy('created_at','DESC')->simplePaginate();
 		

@@ -30,7 +30,7 @@
 
                 @foreach($toplink as $item)
                     <li class="nav-item">
-                        <a class="nav-link pt-0 pb-0" target="_blank" href="{{ $item['uri'] }}">{{ $item['name'] }}</a>
+                        <a class="nav-link pt-0 pb-0"  href="{{ $item['uri'] }}">{{ $item['name'] }}</a>
                     </li>
                 @endforeach
 
