@@ -5,7 +5,7 @@
         @if(url()->isValidUrl($item['uri']))
             <a class="nav-link" href="{{ $item['uri'] }}" target="_blank">
         @else
-            <a class="nav-link {{ admin_url($item['uri']) == request()->url() ? ' active' : '' }} "  href="{{ admin_url($item['uri']) }}?_pjax=%23pjax-container">
+            <a class="nav-link {{ admin_url($item['uri']) == request()->url() ? ' active' : '' }} "  href="{{ admin_url($item['uri']) }}">
         @endif
 
 

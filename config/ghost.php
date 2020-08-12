@@ -7,8 +7,8 @@ return [
 	"min-logo"=>"/adminlte/image/logo.png",
 	"logo" =>'听雪阁',
 	'class' => "hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed font-weight-lighter",
-	"https"=>false,
-	"secure"=>false,
+	"https"=>true,
+	"secure"=>true,
 	"route" => [
 		'prefix' => 'admin'
 	],
