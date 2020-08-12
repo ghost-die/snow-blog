@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Lib\ResponseServe;
+use App\Http\Lib\Layout\Content;
+use App\Http\Lib\Traits\ResponseServe;
 use App\Http\Lib\Tree;
 use App\Models\Comment;
 use App\Traits\HasAdminResourceActions;
@@ -18,18 +19,22 @@ class CommentController extends BaseController
 	
 	public $model = Comment::class;
 	
-	public $home = 'article';
+	public $home = 'comment';
 	
-	public function index()
+	
+	protected  $title = 'Comment';
+	
+	public function grid()
 	{
-		
 		$this->data = [
 			'data'=>$this->data(),
 		];
 		
+		
+		
 		$this->setView('comment.index');
 		
-		return $this->view();
+		return view($this->view,$this->data);
 	}
 	
 	
@@ -41,7 +46,7 @@ class CommentController extends BaseController
 		
 		$this->setView('comment.edit');
 		
-		return $this->view();
+		return view($this->view,$this->data);
 	}
 	
 	

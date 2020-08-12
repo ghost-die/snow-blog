@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Lib\Layout\Content;
 use App\Models\User;
 use App\Traits\HasAdminResourceActions;
 use Illuminate\Http\Request;
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends BaseController
 {
 	use HasAdminResourceActions;
+	
+	protected $title = 'User';
+	
 	
 	
 	public $input = [
@@ -26,17 +30,18 @@ class UserController extends BaseController
 	
 	public $model = User::class;
 	
-	public function index()
+	
+	public function grid()
 	{
-		
 		$this->data = [
 			'data'=>$this->data()
 		];
 		
 		$this->setView('users.index');
 		
-		return $this->view();
+		return view($this->view,$this->data);
 	}
+	
 	
 	
 	public function edit(User $user)
@@ -45,12 +50,8 @@ class UserController extends BaseController
 			'data' =>$user
 		]);
 		$this->setView('users.edit');
-
-		return $this->view();
+		return view($this->view,$this->data);
 		
-//		print_r($user);
-//
-//		return view('admin.users.edit',['data'=>$user]);
 	}
 	
 	public function update(User $user,Request $request)
@@ -60,7 +61,7 @@ class UserController extends BaseController
 		
 		$user->save();
 		
-		return notification('操作成功','success');
+		return notification('操作成功','success',route('admin.user.index'));
 	}
 	
 	public function store()

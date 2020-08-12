@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Lib\Layout\Content;
 use App\Models\ArticleCategory;
 
 use App\Traits\HasAdminResourceActions;
@@ -14,6 +15,7 @@ class CategoryController extends BaseController
 {
 	use HasAdminResourceActions;
 	
+	protected $title = 'Category';
 	
 	public $model = ArticleCategory::class;
 	
@@ -24,7 +26,7 @@ class CategoryController extends BaseController
 	public $home = 'category';
 	
 	
-	public function index()
+	public function grid()
 	{
 		
 		$this->data = [
@@ -33,7 +35,9 @@ class CategoryController extends BaseController
 		
 		$this->setView('category.index');
 		
-		return $this->view();
+		
+		return view($this->view,$this->data);
+		
 	}
 	
 	

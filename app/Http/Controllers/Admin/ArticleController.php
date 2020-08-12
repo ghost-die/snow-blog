@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Lib\ResponseServe;
+use App\Http\Lib\Layout\Content;
+use App\Http\Lib\Traits\ResponseServe;
 use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\Image;
@@ -22,18 +23,20 @@ class ArticleController extends BaseController
 	
 	public $home = 'article';
 	
-	public function index()
+	protected $title = 'Article';
+	
+	
+	public function grid()
 	{
 		
 		$this->data = [
-			'data'=>$this->data(),
-//			'categorys'=>ArticleCategory::where(['user_id'=>auth()->id()])->get(),
-//			'labels'=>Label::get(),
+			'data'=>$this->data()
 		];
 		
 		$this->setView('article.index');
 		
-		return $this->view();
+		return view($this->view,$this->data);
+		
 	}
 	
 	
@@ -47,11 +50,11 @@ class ArticleController extends BaseController
 		
 		$this->setView('article.edit');
 		
-		return $this->view();
+		return view($this->view,$this->data);
 	}
 	
 	
-	public function create()
+	public function form()
 	{
 		$this->data = [
 			'categorys'=>ArticleCategory::where(['user_id'=>auth()->id()])->get(),
@@ -60,7 +63,7 @@ class ArticleController extends BaseController
 		
 		$this->setView('article.create');
 		
-		return $this->view();
+		return view($this->view,$this->data);
 	}
 	
 	public function update(Article $article,Request $request,Label $label)

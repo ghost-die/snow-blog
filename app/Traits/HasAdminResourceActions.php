@@ -5,10 +5,13 @@ namespace App\Traits;
 
 
 
+use App\Http\Lib\Layout\Content;
 use Illuminate\Http\Request;
 
 trait HasAdminResourceActions
 {
+	
+	
 	protected $validate = [];
 	
 	
@@ -22,18 +25,14 @@ trait HasAdminResourceActions
 	protected $data = [];
 	
 	
+	
 	public function data()
 	{
-		return $this->model::orderBy('created_at','DESC')->paginate(15);
+		return $this->model::orderBy('created_at','DESC')->paginate();
 	}
 	
+
 	
-	
-	public function view ()
-	{
-		
-		return view($this->view,$this->data);
-	}
 	
 	/**
 	 * @param string $view

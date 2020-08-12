@@ -1,68 +1,84 @@
 @extends('admin.layouts.app', [
-	'class' => 'dark-edition off-canvas-sidebar',
-	'activePage' => 'login',
-	'titlePage' => __('Login')
-	])
+	'class' => 'hold-transition login-page font-weight-lighter',	])
 
 @section('content')
-    <div class="container" style="height: auto;">
-        <div class="row align-items-center" style="padding-top: 15vh">
 
-            <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-                <form class="form" method="POST" action="{{ route('login') }}">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="/"><b>{{ config('ghost.title') }}</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">{{ __('Login') }}</p>
+
+                <form action="{{ route('login') }}" method="post">
                     @csrf
 
-                    <div class="card card-login card-hidden mb-3">
-                        <div class="card-header text-center">
-                            <h4 class="card-title"><strong>{{ __('Login') }}</strong></h4>
+                    <div class="form-group ">
 
-                        </div>
-                        <div class="card-body">
-                            <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="material-icons">email</i>
-                                        </span>
-                                    </div>
-                                    <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email', 'ghost@ghost-ai.com') }}" required>
-                                </div>
-                                @if ($errors->has('email'))
-                                    <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="material-icons">lock_outline</i>
-                                        </span>
-                                    </div>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" value="{{ !$errors->has('password') ? "123123" : "" }}" required>
-                                </div>
-                                @if ($errors->has('password'))
-                                    <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="form-check mr-auto ml-3 mt-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
-                                    <span class="form-check-sign">
-                                        <span class="check"></span>
-                                    </span>
+                        <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" aria-invalid="true" aria-describedby="email-error" id="email" placeholder="{{ __('Email...') }}" value="{{ old('email', 'ghost@ghost-ai.com') }}">
+
+
+                        @if ($errors->has('email'))
+
+                            <span id="email-error" class="error invalid-feedback">{{ $errors->first('email') }}</span>
+
+                        @endif
+
+                    </div>
+
+                    <div class="form-group">
+
+
+                        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" aria-invalid="true" aria-describedby="password-error" placeholder="{{ __('Password...') }}" value="{{ !$errors->has('password') ? "123123" : "" }}" required>
+
+                        @if ($errors->has('password'))
+
+                            <span id="password-error" class="error invalid-feedback">{{ $errors->first('password') }}</span>
+
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" {{ old('remember') ? 'checked' : '' }} name="remember" id="remember">
+                                <label for="remember">
+                                    {{ __('Remember Me') }}
                                 </label>
                             </div>
                         </div>
-                        <div class="card-footer justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Login') }}</button>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">{{ __('Sign In') }}</button>
                         </div>
+                        <!-- /.col -->
                     </div>
                 </form>
+
+{{--                <div class="social-auth-links text-center mb-3">--}}
+{{--                    <p>- OR -</p>--}}
+{{--                    <a href="#" class="btn btn-block btn-primary">--}}
+{{--                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
+{{--                    </a>--}}
+{{--                    <a href="#" class="btn btn-block btn-danger">--}}
+{{--                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <!-- /.social-auth-links -->--}}
+
+{{--                <p class="mb-1">--}}
+{{--                    <a href="forgot-password.html">I forgot my password</a>--}}
+{{--                </p>--}}
+{{--                <p class="mb-0">--}}
+{{--                    <a href="register.html" class="text-center">Register a new membership</a>--}}
+{{--                </p>--}}
             </div>
+            <!-- /.login-card-body -->
         </div>
     </div>
 @endsection
+
+@push('scripts')
+
+@endpush

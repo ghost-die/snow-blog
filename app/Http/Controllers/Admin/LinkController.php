@@ -4,7 +4,8 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Http\Lib\ResponseServe;
+use App\Http\Lib\Layout\Content;
+use App\Http\Lib\Traits\ResponseServe;
 
 use App\Models\Article;
 use App\Models\Link;
@@ -19,8 +20,9 @@ class LinkController extends BaseController
 	
 	public $home = 'link';
 	
+	protected $title = 'Link';
 	
-	public function index()
+	public function grid()
 	{
 		
 		$this->data = [
@@ -29,15 +31,15 @@ class LinkController extends BaseController
 		
 		$this->setView('link.index');
 		
-		return $this->view();
+		return view($this->view,$this->data);
 	}
 	
-	public function create()
+	public function form()
 	{
 		
 		$this->setView('link.create');
 		
-		return $this->view();
+		return view($this->view);
 	}
 	
 	
@@ -52,7 +54,6 @@ class LinkController extends BaseController
 			'status' => 'required',
 		];
 		
-//		$this->validateMessage = [];
 		$this->validationMessages($request);
 		$data = $request->all(['name','uri','introduction','email','is_top','status']);
 		try {
@@ -71,7 +72,7 @@ class LinkController extends BaseController
 		
 		$this->setView('link.edit');
 		
-		return $this->view();
+		return view($this->view,$this->data);
 	}
 	
 	public function update(Request $request,Link $link)

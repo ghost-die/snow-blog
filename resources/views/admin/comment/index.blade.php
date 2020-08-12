@@ -1,135 +1,105 @@
-@extends('admin.layouts.app', [
-    'class' => 'dark-edition ',
-    'titlePage' =>__('Article Comment'),
-    'activePage' => 'article',
-    'active' => 'article_comment',
-])
 
 
-@section('content')
 
-
-    <section class="content"  id="pjax-container">
-        <div class="container-fluid">
-            <div class="card card-dark">
-                <div class="card-header card-header-primary">
-                    <h4 class="card-title">评论管理</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-fixed">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>文章名称</th>
-                            <th>关联ID</th>
-                            <th>昵称</th>
-                            <th>邮箱</th>
-                            <th>主页</th>
-                            <th style="width: 200px">内容</th>
-                            <th>时间</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($data as $k=>$v)
-                            <tr>
-                                <td>{{ $v['id'] }}.</td>
-                                <td>{{ $v->article->title }}</td>
-                                <td>{{ $v['parent_id'] }}</td>
-                                <td>{{ $v['name'] }}</td>
-                                <td>{{ $v['email'] }}</td>
-                                <td>{{ $v['web_site'] }}</td>
-                                <td class="table-content" data-toggle="tooltip" data-placement="top" title="{{ $v['content'] }}">{{ $v['content'] }}</td>
-                                <td>{{ $v->getRawOriginal('created_at') }}</td>
-                                <td width="200">
-
-                                    <a rel="tooltip" class="btn btn-sm btn-success btn-link" href="{{ route('admin.comment.edit',['comment'=>$v['id']]) }}"  title="Edit">
-                                        <i class="material-icons">edit</i>
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                    <a rel="tooltip"  class="btn btn-sm btn-danger btn-link deleted"  data-url="{{ route('admin.comment.destroy',['comment'=>$v['id']]) }}" title="Delete">
-                                        <i class="material-icons">delete</i>
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class=" clearfix">
-                    {{ $data->links() }}
+    <div class="card card-default">
+        <div class="card-header  border-bottom-0">
+            <div class="float-right">
+                <div class="btn-group pull-right grid-create-btn" style="margin-right: 10px">
+                    <a href="#" class="btn btn-sm btn-success" title="{{ __('Add') }}">
+                        <i class="fa fa-plus"></i><span class="">&nbsp;&nbsp;{{ __('Add') }}</span>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="card-body  p-0">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>文章名称</th>
+                        <th>关联ID</th>
+                        <th>昵称</th>
+                        <th>邮箱</th>
+                        <th>主页</th>
+                        <th style="width: 200px">内容</th>
+                        <th>时间</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($data as $k=>$v)
+                        <tr>
+                            <td>{{ $v['id'] }}.</td>
+                            <td>{{ $v->article ? $v->article->title :''}}</td>
+                            <td>{{ $v['parent_id'] }}</td>
+                            <td>{{ $v['name'] }}</td>
+                            <td>{{ $v['email'] }}</td>
+                            <td>{{ $v['web_site'] }}</td>
+                            <td class="table-content" data-toggle="tooltip" data-placement="top" title="{{ $v['content'] }}">{{ $v['content'] }}</td>
+                            <td>{{ $v->getRawOriginal('created_at') }}</td>
+                            <td width="200">
 
-@endsection
+                                <a  class="btn btn-sm btn-success" href="{{ route('admin.comment.edit',['comment'=>$v['id']]) }}"  title="Edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <button  class="btn btn-sm btn-danger deleted"  data-url="{{ route('admin.comment.destroy',['comment'=>$v['id']]) }}" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            {{ $data->links() }}
+        </div>
+    </div>
+    <script data-exec-on-popstate>
 
-@push('css')
-    <link href="{{ asset('assets') }}/plugins/sweetalert-2.1.0/docs/assets/css/app.css?v=2.1.0" rel="stylesheet" />
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('assets') }}/plugins/sweetalert-2.1.0/docs/assets/sweetalert/sweetalert.min.js"></script>
+        $('.deleted').on('click',function () {
 
 
-    <script>
-    // $('.table-content').tooltip()
+            let url = $(this).data('url');
 
+            Swal.fire({
+                title: '确定要删除该评论吗?',
+                text: "该操作不可恢复!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '确定',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.value) {
 
-    $('.deleted').on('click',function () {
-       console.log($(this).data('url'))
-
-        let url = $(this).data('url');
-        swal({
-            title: "确定要删除该评论吗？",
-            icon: 'warning',
-            buttons: {
-                cancel: {
-                    text: "取消",
-                    value: "",
-                    visible: true,
-                    closeModal: true,
-                },
-                confirm: {
-                    text: "确定",
-                    value: true,
-                    visible: true,
-                    closeModal: true
-                }
-            },
-        }).then(function(isConfirm){
-            if(isConfirm){
-                console.log(url)
-                $.ajax({
-                    url:url,
-                    type:"DELETE",
-                    data:{"_method":'DELETE','_token':Config.token},
-                    success:function(data){
-
-                        console.log(data)
-
-                        if(data.status==='success'){
-                            // 刷新数据
-
-                            $.pjax.reload('#pjax-container');
-                            md.notification("删除成功",'primary','add_alert')
-
-                        }else{
-                            md.notification("删除失败",'danger','error')
+                    $.ajax({
+                        url:url,
+                        method:'delete',
+                        headers: {
+                            'X-CSRF-Token': document.head.querySelector('meta[name="csrf-token"]').content
+                        },
+                        success:function(data){
+                            if(data.status==='success'){
+                                // 刷新数据
+                                $.ghost.reload();
+                                toastr.success("删除成功")
+                            }else{
+                                toastr.error("删除失败")
+                            }
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown){
+                            toastr.error("删除失败" )
                         }
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown){
-                        md.notification("删除失败",'danger','error')
-                    }
-                });
+                    });
+                }
 
-            }else{
-                console.log("点击取消");
-            }
-        })
-    });
+
+            })
+        });
 
     </script>
-@endpush
+

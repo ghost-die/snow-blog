@@ -1,89 +1,88 @@
-@extends('admin.layouts.app', [
-    'class' => 'dark-edition ',
-    'titlePage' =>__('Category'),
-    'activePage' => 'category',
-    'active' => '',
-])
-@section('content')
+<div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-7">
+        <div class="card card-default">
+            <div class="card-header border-bottom-0">
+
+                <div class="float-right">
+                    <div class="btn-group pull-right" style="margin-right: 10px">
+                        <a href="#" class="btn btn-sm btn-success" title="{{ __('Add') }}">
+                            <i class="fa fa-plus"></i><span class="">&nbsp;&nbsp;{{ __('Add') }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover grid-table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Article Num') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($data as $k=>$v)
+                            <tr>
+                                <td>{{ $v['id'] }}.</td>
+                                <td>{{ $v['name'] }}</td>
+                                <td>
+                                    {{ $v['article_num'] }}
+                                </td>
+                            </tr>
+
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                {!! $data->links() !!}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-5">
+
+        <div class="card card-default">
+            <div class="card-header border-bottom-0">
+                <h3 class="card-title">{{ __('Created Article') }}</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="post" action="{{ admin_url('category') }}" autocomplete="off" class="form-horizontal" pjax-container>
+                @csrf
+
+                <div class="card-body">
+                    <div class="col-md-12">
 
 
-    <section class="content">
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-7 col-md-7 col-sm-7">
-                    <div class="card card-dark">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Category Management') }}</h4>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>{{ __('Name') }}</th>
-                                        <th>{{ __('Article Num') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                @foreach($data as $k=>$v)
-                                    <tr>
-                                        <td>{{ $v['id'] }}.</td>
-                                        <td>{{ $v['name'] }}</td>
-                                        <td>
-                                            {{ $v['article_num'] }}
-                                        </td>
-                                    </tr>
-
-                                @endforeach
-                                </tbody>
-                            </table>
-
-
-                        </div>
-
-                        <div class=" clearfix">
-                            {{ $data->links() }}
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">{{ __('Name') }}</label>
+                            <div class="col-sm-10">
+                                <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="name" type="text" placeholder="{{ __('Name') }}" value="" required />
+                                @if ($errors->has('name'))
+                                    <span id="name-error" class="error text-danger" >{{ $errors->first('name') }}</span>
+                                @endif
+                            </div>
                         </div>
 
                     </div>
 
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-5">
-                    <form method="post"  autocomplete="off" class="form-horizontal" action="{{ admin_url('category') }}">
+                <!-- /.card-body -->
+                <div class="card-footer text-center">
 
+                    <button type="submit" class="btn btn-default">{{ __('Save') }} </button>
 
-                        @csrf
-
-                        <div class="card ">
-                            <div class="card-header card-header-primary">
-                                <h4 class="card-title">{{ __('Create') }}</h4>
-{{--                                <p class="card-category">{{ __('User information') }}</p>--}}
-                            </div>
-                            <div class="card-body ">
-
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
-                                    <div class="col-sm-7">
-                                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="" required="true" aria-required="true"/>
-                                            @if ($errors->has('name'))
-                                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
-            </div>
+                <!-- /.card-footer -->
+            </form>
         </div>
-    </section>
-@endsection
+    </div>
+</div>

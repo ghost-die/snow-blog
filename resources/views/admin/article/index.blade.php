@@ -1,81 +1,63 @@
-@extends('admin.layouts.app', [
-    'class' => 'dark-edition ',
-    'titlePage' =>__('Article Management'),
-    'activePage' => 'article',
-    'active' => 'article_index',
-])
 
-@section('content')
+<div class="card card-default">
+    <div class="card-header  border-bottom-0">
 
-    <section class="content"  id="pjax-container">
-        <div class="container-fluid">
-            <div class="card card-dark">
-                <div class="card-header card-header-primary">
-                    <h4 class="card-title">文章管理</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 text-right">
-                            <a href="{{ route('admin.article.create') }}" class="btn btn-sm btn-primary">{{ __('Add') }}</a>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>标题</th>
-                            <th>阅读数</th>
-                            <th>评论数</th>
-                            <th>创建时间</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($data as $k=>$v)
-                            <tr>
-                                <td>{{ $v['id'] }}.</td>
-                                <td>{{ $v['title'] }}</td>
-                                <td>{{ $v['reads_num'] }}</td>
-                                <td>{{ $v['comments_num'] }}</td>
-                                <td>{{ $v->getRawOriginal('created_at') }}</td>
-                                <td width="200">
-
-                                    <a rel="tooltip" class="btn btn-sm btn-success btn-link" href="{{ route('admin.article.edit',['article'=>$v['id']]) }}"  title="Edit">
-                                        <i class="material-icons">edit</i>
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                    <a rel="tooltip"  class="btn btn-sm btn-danger btn-link deleted"  data-url="{{ route('admin.article.destroy',['article'=>$v['id']]) }}" title="Delete">
-                                        <i class="material-icons">delete</i>
-                                        <div class="ripple-container"></div>
-                                    </a>
-
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-
-                    </table>
-                    </div>
-                    <div class=" clearfix">
-                        {{ $data->links() }}
-                    </div>
-                </div>
-
+        <div class="float-right">
+            <div class="btn-group pull-right" style="margin-right: 10px">
+                <a href="{{ route('admin.article.create') }}" class="btn btn-sm btn-success" title="{{ __('Add') }}">
+                    <i class="fa fa-plus"></i><span class="">&nbsp;&nbsp;{{ __('Add') }}</span>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+    <div class="card-body  p-0">
 
-@endsection
-@push('css')
-    <link href="{{ asset('assets') }}/plugins/sweetalert-2.1.0/docs/assets/css/app.css?v=2.1.0" rel="stylesheet" />
-@endpush
+        <div class="table-responsive">
+            <table class="table table-hover ">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>标题</th>
+                    <th>阅读数</th>
+                    <th>评论数</th>
+                    <th>创建时间</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($data as $k=>$v)
+                    <tr>
+                        <td>{{ $v['id'] }}.</td>
+                        <td>{{ $v['title'] }}</td>
+                        <td>{{ $v['reads_num'] }}</td>
+                        <td>{{ $v['comments_num'] }}</td>
+                        <td>{{ $v->getRawOriginal('created_at') }}</td>
+                        <td width="200">
 
-@push('scripts')
-    <script src="{{ asset('assets') }}/plugins/sweetalert-2.1.0/docs/assets/sweetalert/sweetalert.min.js"></script>
+                            <a class="btn btn-sm btn-success" href="{{ route('admin.article.edit',['article'=>$v['id']]) }}"  title="Edit">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <button  class="btn btn-sm btn-danger deleted"  data-url="{{ route('admin.article.destroy',['article'=>$v['id']]) }}" title="Delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
 
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
 
-    <script>
+            </table>
+        </div>
+        <div class="card-footer">
+            {{ $data->links() }}
+        </div>
+    </div>
+
+</div>
+
+<script data-exec-on-popstate>
+
+    $(function () {
         $('.edit').on('click',function () {
             window.location.href = $(this).data('url');
         });
@@ -85,54 +67,49 @@
 
             let url = $(this).data('url');
 
-            swal({
-                title: "确定要删除该文章吗？",
+            Swal.fire({
+                title: '确定要删除该文章吗?',
+                text: "该操作不可恢复!",
                 icon: 'warning',
-                buttons: {
-                    cancel: {
-                        text: "取消",
-                        value: "",
-                        visible: true,
-                        closeModal: true,
-                    },
-                    confirm: {
-                        text: "确定",
-                        value: true,
-                        visible: true,
-                        closeModal: true
-                    }
-                },
-            }).then(function(isConfirm){
-                if(isConfirm){
-                    console.log("点击确定")
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '确定',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.value) {
+
                     $.ajax({
                         url:url,
                         method:'delete',
-                        data:{"_token":window.Config.token},
+                        headers: {
+                            'X-CSRF-Token': document.head.querySelector('meta[name="csrf-token"]').content
+                        },
                         success:function(data){
-
-                            console.log(data)
-
                             if(data.status==='success'){
                                 // 刷新数据
-
-                                $.pjax.reload('#pjax-container');
-                                md.notification("删除成功",'primary','add_alert')
+                                $.ghost.reload();
+                                toastr.success("删除成功")
 
                             }else{
-                                md.notification("删除失败",'danger','error')
+                                toastr.error("删除失败")
                             }
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown){
-                            md.notification("删除失败",'danger','error')
+                            toastr.error("删除失败" )
                         }
                     });
 
-                }else{
-                    console.log("点击取消");
+
+                    // Swal.fire(
+                    //     'Deleted!',
+                    //     'Your file has been deleted.',
+                    //     'success'
+                    // )
                 }
             })
         });
+    })
 
-    </script>
-@endpush
+
+</script>

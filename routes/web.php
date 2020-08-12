@@ -23,7 +23,7 @@ Route::get('/t',function (\Illuminate\Http\Request $request){
 
 Auth::routes();
 
-Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function ( Routes $route) {
+Route::prefix('admin')->namespace('Admin')->middleware(['web', 'admin'])->group(function ( Routes $route) {
 
 	$route->get('/','IndexController@index')->name('admin.index');
 	$route->resource('user','UserController')->names('admin.user');
@@ -31,6 +31,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function (
 	$route->resource('article','ArticleController')->names('admin.article');
 	$route->resource('comment','CommentController')->names('admin.comment');
 	$route->resource('link','LinkController')->names('admin.link');
+	$route->resource('demo','DemoController')->names('admin.demo');
 	
 	
 	$route->post('/upload','ArticleController@upload')->name('upload_md_image');

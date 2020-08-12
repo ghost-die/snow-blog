@@ -1,0 +1,104 @@
+
+.dropzone .dz-message {
+  font-weight: 400;
+}
+.dropzone .dz-message {
+  text-align: center;
+  margin: 4em 0;
+}
+
+.dropzone {
+  border: 2px dashed #0087F7;
+  border-radius: 5px;
+  background: white;
+}
+
+
+.dropzone .dz-message .dz-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+
+.select2-container--bootstrap4.select2-container--focus .select2-selection {
+  border-color: #005ebf;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/*.md-editor .md-header .btn-group{*/
+/*    margin-right: 1em;*/
+/*}*/
+
+.md-editor .btn-toolbar > .btn, .btn-toolbar > .btn-group, .btn-toolbar > .input-group {
+  margin-left: 5px;
+}
+.md-editor .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.md-editor .btn-group > .btn:first-child {
+  margin-left: 0;
+}
+.md-editor .btn {
+
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /*background-color: -internal-light-dark(rgb(239, 239, 239), rgb(74, 74, 74));*/
+  background-color:rgb(239, 239, 239);
+
+}
+
+.md-editor>textarea{
+  background: #fff;
+}
+
+
+.sidebar-menu .nav-item .nav-link{
+  border-left: 3px solid transparent; !important;
+}
+
+.nav-legacy.nav-sidebar>.nav-item>.nav-link.active>.nav-icon{
+  margin-left: calc(.55rem - 3px)  !important;
+}
+
+.nav-flat:not(.nav-child-indent) .nav-treeview .nav-item>.nav-link>.nav-icon {
+  margin-left: calc(.55rem - 3px)  !important;
+}
+
+
+.sidebar-mini-md.sidebar-collapse .nav-legacy>.nav-item>.nav-link .nav-icon, .sidebar-mini.sidebar-collapse .nav-legacy>.nav-item>.nav-link .nav-icon {
+  margin-left: calc(.55rem - 3px)  !important;
+}
+.sidebar-mini .nav-legacy>.nav-item .nav-link .nav-icon, .sidebar-mini-md .nav-legacy>.nav-item .nav-link .nav-icon {
+  margin-left: calc(.55rem - 3px)  !important;
+}
+
+@media (min-width: 576px)
+{
+  .col-sm-2 {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    text-align: right;
+  }
+}
+
+
+
+.table thead th{
+  border-bottom: 1px solid #dee2e6 !important;
+}

@@ -1,98 +1,37 @@
 
-<div class="sidebar" data-color="purple" data-background-color="black" data-image="{{ asset('assets') }}/img/sidebar-2.jpg">
-    <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar elevation-4 sidebar-dark-gray">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link navbar-gray">
+        <img src="{{ config('ghost.min-logo') }}" alt="AdminLTE Logo" class="brand-image  img-circle elevation-3"
+             style="opacity: .8">
 
-      Tip 2: you can also add an image using data-image tag
-  -->
-    <div class="logo">
+        <span class="brand-text font-weight-light">{{ config('ghost.logo') }}</span>
+    </a>
 
-        <a href="" class="simple-text logo-mini">
-            {{ config('ghost.min-logo') }}
-        </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+{{--        <div class="user-panel mt-3 pb-3 mb-3 d-flex">--}}
+{{--            <div class="image">--}}
+{{--                <img src="{{ make_gravatar(auth()->user()->email) }}" class="img-circle elevation-2" alt="User Image">--}}
+{{--            </div>--}}
+{{--            <div class="info">--}}
+{{--                <a href="#" class="d-block">{{ auth()->user()->name }}</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <a href="" class="simple-text logo-normal">
-            {{ config('ghost.logo') }}
-        </a>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="sidebar-menu nav nav-pills nav-sidebar flex-column  nav-flat nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                @each('admin.layouts.navbars.navs.menu', Admin::menu(), 'item')
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
     </div>
-    <div class="sidebar-wrapper">
-        <ul class="nav">
-            <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.index') }}">
-                    <i class="material-icons">dashboard</i>
-                    <p>{{ __('Dashboard') }}</p>
-                </a>
-            </li>
+    <!-- /.sidebar -->
+</aside>
 
-            <li class="nav-item {{ $activePage == 'user' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.user.index') }}">
-                    <i class="material-icons">person</i>
-                    <p>{{ __('User Profile') }}</p>
-                </a>
-            </li>
-            <li class="nav-item {{ $activePage == 'category' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.category.index') }}">
-                    <i class="material-icons">category</i>
-                    <p>{{ __('Category') }}</p>
-                </a>
-            </li>
-            <li class="nav-item  {{ $activePage == 'article' ? ' actived' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#ArticleManagement">
-                    <i class="material-icons">article</i>
-                    <p>{{ __('Article Management') }}
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse {{ $activePage == 'article' ? ' show' : '' }}" id="ArticleManagement">
-                    <ul class="nav">
-                        <li class="nav-item {{ $active == 'article_index' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.article.index') }}">
-                                <i class="material-icons">list</i>
-                                <p class="sidebar-normal">{{ __('Article List') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ $active == 'article_comment' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.comment.index') }}">
-                                <i class="material-icons">comment</i>
-                                <p class="sidebar-normal">{{ __('Article Comment') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item {{ $activePage == 'link' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.link.index') }}">
-                    <i class="material-icons">link</i>
-                    <p>{{ __('Link') }}</p>
-                </a>
-            </li>
-
-
-{{--            <li class="nav-item ">--}}
-{{--                <a class="nav-link" href="./icons.html">--}}
-{{--                    <i class="material-icons">bubble_chart</i>--}}
-{{--                    <p>Icons</p>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-{{--            <li class="nav-item ">--}}
-{{--                <a class="nav-link" href="./map.html">--}}
-{{--                    <i class="material-icons">location_ons</i>--}}
-{{--                    <p>Maps</p>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-{{--            <li class="nav-item ">--}}
-{{--                <a class="nav-link" href="./notifications.html">--}}
-{{--                    <i class="material-icons">notifications</i>--}}
-{{--                    <p>Notifications</p>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-            <!-- <li class="nav-item active-pro ">
-                  <a class="nav-link" href="./upgrade.html">
-                      <i class="material-icons">unarchive</i>
-                      <p>Upgrade to PRO</p>
-                  </a>
-              </li> -->
-        </ul>
-    </div>
-</div>

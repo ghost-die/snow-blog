@@ -4,6 +4,9 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Http\Lib\Layout\Column;
+use App\Http\Lib\Layout\Content;
+use App\Http\Lib\Layout\Row;
 use App\Models\Image as ImageModel;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -16,10 +19,38 @@ use Intervention\Image\Facades\Image;
 
 class IndexController extends BaseController
 {
-	public function index()
+	
+	
+	
+	public function index(Content $content)
 	{
-
 		
+		return $content->title('Home')->description('description')
+			
+			->row(function (Row $row) {
+				
+				$row->column(6, function (Column $column) {
+					$column->append(self::dependencies());
+				});
+				$row->column(6, function (Column $column) {
+					$column->append(self::environment());
+				});
+			});
+	}
+	
+	
+	public static function dependencies()
+	{
+		$json = file_get_contents(base_path('composer.json'));
+		
+		$dependencies = json_decode($json, true)['require'];
+		
+		return view('admin.dashboard.dependencies', compact('dependencies'));
+	}
+	
+	
+	public static function environment()
+	{
 		$envs = [
 			['name' => 'PHP version',       'value' => 'PHP/'.PHP_VERSION],
 			['name' => 'Laravel version',   'value' => app()->version()],
@@ -37,22 +68,7 @@ class IndexController extends BaseController
 			['name' => 'URL',               'value' => config('app.url')],
 		];
 		
-		
-		$data = [
-			'data'=>auth()->user(),
-			'dependencies'=>$this->dependencies(),
-			'envs' => $envs
-		];
-		return view('admin.index',$data);
-	}
-	
-	public function dependencies()
-	{
-		$json = file_get_contents(base_path('composer.json'));
-		
-		$dependencies = json_decode($json, true)['require'];
-		
-		return  $dependencies;
+		return view('admin.dashboard.environment', compact('envs'));
 	}
 	
 	

@@ -166,6 +166,9 @@ return [
          * Package Service Providers...
          */
 	    Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider::class,
+	    
+	    
+	    \App\Http\Lib\AdminServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -227,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+	    'Admin' => \App\Http\Lib\Facades\Admin::class
     ],
 
 ];
