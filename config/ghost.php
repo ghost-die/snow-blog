@@ -43,7 +43,7 @@ return [
 					'order'=>0,
 					'title'=>'Article Management',
 					'icon'=>'fa fa-ticket',
-					'uri'=>'',
+					'uri'=>'#',
 				],
 				[
 					'id'=>5,
