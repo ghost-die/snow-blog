@@ -26,7 +26,6 @@
             <ul class="sidebar-menu nav nav-pills nav-sidebar flex-column  nav-flat nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                {{ dd(Admin::menu()) }}
                 @each('admin.layouts.navbars.navs.menu', Admin::menu(), 'item')
 
             </ul>
