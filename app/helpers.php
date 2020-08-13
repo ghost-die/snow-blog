@@ -60,7 +60,7 @@ if (!function_exists('admin_url')) {
 	 */
 	function admin_url($path = '', $parameters = [], $secure = null)
 	{
-		if (!$path)return '';
+		if (!$path)return '#';
 		if (\Illuminate\Support\Facades\URL::isValidUrl($path)) {
 			return $path;
 		}
