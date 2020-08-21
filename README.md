@@ -10,7 +10,16 @@
 
 ## 说明
 
+前端主要使用 Bootstrap https://github.com/twbs/bootstrap 
+
+后台页面使用AdminLTE https://github.com/ColorlibHQ/AdminLTE
+
+后台模版渲染部分参考 laravel-admin  https://github.com/z-song/laravel-admin
+
+
+
 blog将在后续慢慢整合。
+
 
 
 
@@ -123,4 +132,3 @@ E-mail : ghost@ghost-ai.com
 ## License
 
 - ```MIT License``` 
-
