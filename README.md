@@ -131,4 +131,4 @@ E-mail : ghost@ghost-ai.com
 
 ## License
 
-- ```MIT License``` 
+-  [```MIT License```](https://github.com/Ghost-die/snow-blog/blob/master/LICENSE)
