@@ -5,7 +5,7 @@ namespace App\Http\Lib;
 
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Middleware\Pjax;
+use App\Http\Lib\Middleware\Pjax;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
