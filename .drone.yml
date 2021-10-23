@@ -1,5 +1,5 @@
 kind: pipeline
-name: note
+name: runner-1
 steps:
   -   name: list
       commands:
