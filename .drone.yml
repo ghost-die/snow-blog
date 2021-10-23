@@ -1,9 +1,0 @@
-kind: pipeline
-name: default
-steps:
-# 将部署文件放入指定目录
-  - name: code-scp
-    image: appleboy/drone-scp
-    commands:
-      - pwd
-      - ls
