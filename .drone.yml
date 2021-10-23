@@ -1,0 +1,6 @@
+kind: pipeline
+name: note
+steps:
+  -   name: list
+      commands:
+        - echo Hello World
