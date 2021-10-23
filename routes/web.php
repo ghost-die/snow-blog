@@ -33,6 +33,8 @@ Route::prefix('admin')->namespace('Admin')->middleware(['web', 'admin'])->group(
 	$route->resource('link','LinkController')->names('admin.link');
 	$route->resource('demo','DemoController')->names('admin.demo');
 	
+	$route->resource('config','ConfigController')->names('admin.config');
+	
 	
 	$route->post('/upload','ArticleController@upload')->name('upload_md_image');
 });

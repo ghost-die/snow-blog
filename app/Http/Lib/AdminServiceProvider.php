@@ -5,7 +5,7 @@ namespace App\Http\Lib;
 
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Middleware\Pjax;
+use App\Http\Lib\Middleware\Pjax;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
@@ -20,7 +20,7 @@ class AdminServiceProvider extends ServiceProvider
 		'admin.pjax'       => Pjax::class,
 		'admin.bootstrap'  => Middleware\Bootstrap::class,
 	];
-	
+
 	/**
 	 * The application's route middleware groups.
 	 *
@@ -33,8 +33,8 @@ class AdminServiceProvider extends ServiceProvider
 			'admin.bootstrap',
 		],
 	];
-	
-	
+
+
 	/**
 	 * Boot the service provider.
 	 *
@@ -43,16 +43,16 @@ class AdminServiceProvider extends ServiceProvider
 	public function boot()
 	{
 //		$this->loadViewsFrom(__DIR__.'/../resources/views', 'admin');
-	
+
 	}
-	
+
 	public function register()
 	{
-		
+
 		$this->registerRouteMiddleware();
-		
+
 	}
-	
+
 	/**
 	 * Register the route middleware.
 	 *
@@ -64,7 +64,7 @@ class AdminServiceProvider extends ServiceProvider
 		foreach ($this->routeMiddleware as $key => $middleware) {
 			app('router')->aliasMiddleware($key, $middleware);
 		}
-		
+
 		// register middleware group.
 		foreach ($this->middlewareGroups as $key => $middleware) {
 			app('router')->middlewareGroup($key, $middleware);
