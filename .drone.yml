@@ -4,5 +4,6 @@ name: default
 
 steps:
   - name: build
+    image: centos
     commands:
-      - ls
+      - echo Hello World
