@@ -1,6 +1,16 @@
-workspace:
-  path: src/projectname
-pipeline:
-  commands:
-    - pwd
-    - ls
+kind: pipeline
+name: default
+steps:
+# 将部署文件放入指定目录
+  - name: code-scp
+    image: appleboy/drone-scp
+    settings:
+      host:
+        from_secret: ssh_host
+      username:
+        from_secret: ssh_user
+      port: 22
+      password:
+        from_secret: ssh_password
+      target: /projects/ci_test
+      source: docker-compose.yaml
