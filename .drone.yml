@@ -1,6 +1,8 @@
 kind: pipeline
-name: runner-1
+type: docker
+name: default
+
 steps:
-  -   name: list
-      commands:
-        - echo Hello World
+  - name: build
+    commands:
+      - ls
